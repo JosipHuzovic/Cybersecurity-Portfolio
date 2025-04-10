@@ -1,4 +1,4 @@
-# Josip Huzovic – Homelab Project
+# Personal Homelab Project
 
 This self-hosted lab simulates enterprise systems using virtual machines, firewalls, and network monitoring tools to gain experience in IT support, diagnostics, and incident response workflows.
 
