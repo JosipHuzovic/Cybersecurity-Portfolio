@@ -19,13 +19,13 @@ For this first phase we'll just be installing the proper components to this lab.
 
 After both the attacker (Kali Linux) and target (Metasploitable2) virtual machines are running, the first step is to locate the IP address of the vulnerable machine so that scanning and testing can begin.
 
-### Step 1: Ensure both VM's are running
+Step 1: Ensure both VM's are running
 
-### Step 2: Open command prompt on the Kali Linux VM and run: 'ifconfig'
+Step 2: Open command prompt on the Kali Linux VM and run: 'ifconfig'
 
-### Step 3: After locating the IP address of the subnet we're attacking, type the command: 'nmap scan (IP address)'
+Step 3: After locating the subnet of the IP address we're attacking, type the command: 'nmap scan (Kali IP address)' (NEEDS CLARIFICATION)
 
-### Step 4: To get a better read on what versions each port has try the command: 'nmap -sV (IP address)'
+Step 4: To get a better read on what versions each port on the vulnerable machine is running, try the command: 'nmap -sV (Target IP address)'
 
 ## Phase 3: Actual Hacking (MSFconsole)
 
