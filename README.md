@@ -5,14 +5,14 @@ Welcome! I'm Josip, a cybersecurity graduate passionate about system defense, in
 ## Projects
 
 ### Homelab: IT Infrastructure & Risk Monitoring
-- Built and managed a virtualized lab using VMware & VirtualBox with Windows/Linux hosts
+- Built and managed a virtualized lab using VMware with Windows/Linux hosts
 - Configured pfSense firewall, Wireshark, and Splunk for network inspection and log monitoring
 - Simulated system issues and resolved support ticket scenarios in a sandboxed environment
 
 ### Capstone Project: Malware Simulation & Response Planning
-- Developed a cross-platform ransomware sample in Python and PowerShell for behavioral analysis
+- Developed a cross-platform ransomware sample using Python, PowerShell, and terminal-based execution to support behavioral analysis
 - Used a Bash Bunny Mark II USB emulation tool to test endpoint defense and privilege handling
-- Awarded 2nd Place at 2024 Mid-Hudson Valley TechMeet for innovation and safe malware handling
+- Awarded 2nd Place at the 2024 Mid-Hudson Valley TechMeet for innovation and safe malware handling
 
 ## Tools & Technologies
 - **Security Tools:** Splunk, Wireshark, Nessus, pfSense
