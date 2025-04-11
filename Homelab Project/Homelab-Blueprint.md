@@ -21,23 +21,19 @@ After both the attacker (Kali Linux) and target (Metasploitable2) virtual machin
 
 **Step 1**: Ensure both VM's are running
 
-**Step 2**: Open command prompt on the Kali Linux VM and identify the local IP address and subnet of your Kali box (e.g., 192.168.56.x).
+**Step 2**: Open command prompt on the Kali Linux VM and identify the local IP address and subnet of your Kali box **(e.g., 192.168.56.x)**.
 
-**Step 3**: Scan the subnet to identify other live hosts (including the vulnerable box): 'nmap -sn 192.168.56.0/24'
-
-
-**Step 4**: Once the Metasploitable2 IP is located, run a basic port scan: 'nmap [target_ip]'
+**Step 3**: Scan the subnet to identify other live hosts (including the vulnerable box): ```nmap -sn 192.168.56.0/24```
 
 
-**Step 5**: To identify running services and their versions , use the following: 'nmap -sV [target_ip]'. This provides more actionable detail for later exploitation or analysis.
+**Step 4**: Once the Metasploitable2 IP is located, run a basic port scan: ```nmap [target_ip]```
 
 
+**Step 5**: To identify running services and their versions, use the following: ```nmap -sV [target_ip]```. This provides more actionable detail for later exploitation or analysis.
 
 
+At this stage, the vulnerable system has been identified and its services have been enumerated. This completes the initial reconnaissance phase. Next, we’ll begin exploring exploitation techniques using Metasploit.
 
-
-
-Step 4: To get a better read on what versions each port on the vulnerable machine is running, try the command: 'nmap -sV (Target IP address)'
 
 ## Phase 3: Actual Hacking (MSFconsole)
 
