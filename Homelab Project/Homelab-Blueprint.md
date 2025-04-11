@@ -4,9 +4,8 @@ This document tracks the creation, evolution, and exercises performed in my self
 
 ---
 
-# Lab Setup Steps
-
 ## Phase 1: Core Components
+...
 
 For this first phase we'll just be installing the proper components to this lab.
 
@@ -15,7 +14,9 @@ For this first phase we'll just be installing the proper components to this lab.
 - Installed **Metasploitable2 (Target)**
 - Configured both VMs to run on **Host-Only networking** for isolation and safety
 
+---
 ## Phase 2: Identifying the Target Machine (Network Discovery)
+...
 
 After both the attacker (Kali Linux) and target (Metasploitable2) virtual machines are running, the first step is to locate the IP address of the vulnerable machine so that scanning and testing can begin.
 
@@ -34,6 +35,7 @@ After both the attacker (Kali Linux) and target (Metasploitable2) virtual machin
 
 At this stage, the vulnerable system has been identified and its services have been enumerated. This completes the initial reconnaissance phase. Next, we’ll begin exploring exploitation techniques using Metasploit.
 
-
+---
 ## Phase 3: Actual Hacking (MSFconsole)
+...
 
