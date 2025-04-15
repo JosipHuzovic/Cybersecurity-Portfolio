@@ -35,7 +35,7 @@ This lab is an evolving project designed to simulate key elements of a real-worl
 | Download VMWare                          | High     | ✅ Done       |
 | Download Kali Linux                      | High     | ✅ Done       |
 | Acquire Defense Box (Metasploitable2)    | High     | ✅ Done       |
-| Break Into Defense Box                   | High     | ✅ Done       |
+| Conduct Initial Exploitation             | High     | ✅ Done       |
 | Install a SIEM                           | Medium   | ✅ Done       |
 | Manage SIEM Effectively                  | Medium   | 🔄 In Progress |
 | Use Wireshark to Capture Packets         | Low      | ⬜ Not Started |
