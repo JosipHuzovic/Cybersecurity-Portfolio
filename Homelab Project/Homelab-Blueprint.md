@@ -9,13 +9,16 @@ This document tracks the creation, evolution, and exercises performed in my self
 - [Phase 1 – Core Components](#phase-1--core-components)
 - [Phase 2 – Network Discovery](#phase-2--network-discovery)
 - [Phase 3 – Initial Exploitation](#phase-3--initial-exploitation-with-metasploit)
+- [Phase 4 – Installing Splunk (SIEM Integration)](#phase-4--installing-splunk-siem-integration)
 - [Next Up](#next-up)
 
 ---
 
 ## Phase 1 - Core Components
 
-For this first phase we'll just be installing the proper components to this lab.
+**Objective:** Set up a self-contained, safe lab environment for cybersecurity testing and exploration.
+
+**Overview:** This phase focuses on installing and configuring essential components: Kali Linux as the attacker machine and Metasploitable2 as the vulnerable target, both running within a host-only network using VMware Workstation.
 
 - Downloaded **VMware Workstation**
 - Installed **Kali Linux (Attacker)**
@@ -25,19 +28,24 @@ For this first phase we'll just be installing the proper components to this lab.
 ---
 ## Phase 2 - Identifying the Target Machine (Network Discovery)
 
-After both the attacker (Kali Linux) and target (Metasploitable2) virtual machines are running, the first step is to locate the IP address of the vulnerable machine so that scanning and testing can begin.
+**Objective:** Identify live hosts and services within the isolated lab environment to simulate internal reconnaissance.
 
-**Step 1**: Ensure both VM's are running
+**Overview:** Using tools like `ifconfig` and `nmap`, this phase simulates an attacker scanning a local network to discover targets and enumerate exposed ports and services, laying the groundwork for future exploitation.
 
-**Step 2**: Open command prompt on the Kali Linux VM and identify the local IP address and subnet of your Kali box **(e.g., 192.168.56.x)**.
-
-**Step 3**: Scan the subnet to identify other live hosts (including the vulnerable box): ```nmap -sn 192.168.56.0/24```
+**Steps:**
 
 
-**Step 4**: Once the Metasploitable2 IP is located, run a basic port scan: ```nmap [target_ip]```
+1. : Ensure both VM's are running
+
+2. Open command prompt on the Kali Linux VM and identify the local IP address and subnet of your Kali box **(e.g., 192.168.56.x)**.
+
+3. Scan the subnet to identify other live hosts (including the vulnerable box): ```nmap -sn 192.168.56.0/24```
 
 
-**Step 5**: To identify running services and their versions, use the following: ```nmap -sV [target_ip]```. This provides more actionable detail for later exploitation or analysis.
+4. Once the Metasploitable2 IP is located, run a basic port scan: ```nmap [target_ip]```
+
+
+5. : To identify running services and their versions, use the following: ```nmap -sV [target_ip]```. This provides more actionable detail for later exploitation or analysis.
 
 
 At this stage, the vulnerable system has been identified and its services have been enumerated. This completes the initial reconnaissance phase. Next, we’ll begin exploring exploitation techniques using Metasploit.
@@ -45,8 +53,9 @@ At this stage, the vulnerable system has been identified and its services have b
 ---
 ## Phase 3 – Initial Exploitation with Metasploit
 
-With our initial reconnaissance complete and services identified, it's time to attempt exploitation. In this phase, we’ll use Metasploit to exploit a known vulnerability in the vsFTPd service running on port 21 of the target machine.
+**Objective:** Leverage known vulnerabilities to gain unauthorized access to the target system using Metasploit Framework.
 
+**Overview:** This phase simulates a real-world attack by exploiting the vulnerable vsFTPd service on Metasploitable2, providing experience with vulnerability identification, module selection, and command execution through a remote shell.
 
 **Step 1**: Identify a Target Service. From our earlier nmap -sV results, we found that port 21 is open and running vsFTPd (version 2.3.4), which is known to have a backdoor vulnerability.
 
@@ -60,7 +69,19 @@ With our initial reconnaissance complete and services identified, it's time to a
 
 **Step 6**: Run the Exploit: ```exploit```
 
-If successful, this exploit spawns a root shell. You now have unauthorized access to the target system—this is for educational purposes only and should never be done on unauthorized networks.
+If successful, this will spawn a root shell on the target system. This is for educational purposes only and should never be performed outside of authorized lab environments.
 
+---
+## Phase 4 – Installing Splunk (SIEM Integration)
+
+**Objective:** Install and configure Splunk on Kali Linux to serve as a SIEM platform for future log collection and monitoring.
+
+**Overview:** Splunk will be used to ingest and analyze logs from the lab environment, enabling simulated alerting and incident response workflows. This phase sets the foundation for blue team operations.
+
+
+
+
+
+---
 ## Next Up
-- Configuring Splunk
+- Phase 5 – Log Ingestion and Detection
