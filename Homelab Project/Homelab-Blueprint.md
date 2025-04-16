@@ -103,8 +103,9 @@ This document tracks the creation, evolution, and exercises performed in my self
 
 8. If you want it to run on start automatically: `sudo /opt/splunk/bin/splunk enable boot-start`
 
-Current Topology
-!['Simple Topology'](Images/Simple_Topology.png)
+Current Topology:  
+
+<img src="Images/Simple_Topology.png" alt="Simple Topology" style="border: 2px solid #444; border-radius: 6px; max-width: 100%;">
 
 ---
 ## Phase 5 – Splunk Log Ingestion and Detection
