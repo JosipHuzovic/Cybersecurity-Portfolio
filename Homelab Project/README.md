@@ -47,10 +47,11 @@ This lab is an evolving project designed to simulate key elements of a real-worl
 | Download Kali Linux                      | High     | ✅ Done       |
 | Acquire Defense Box (Metasploitable2)    | High     | ✅ Done       |
 | Conduct Initial Exploitation             | High     | ✅ Done       |
+| Conduct a Reverse Shell                  | Low      | ✅ Done       |
 | Install a SIEM (Splunk)                  | Medium   | ✅ Done       |
 | Manage SIEM Effectively                  | Medium   | ✅ Done       |
+| Set up pfSense Firewall                  | Medium   | 🔄 In Progress |
 | Use Wireshark to Capture Packets         | Low      | 🔄 In Progress |
-| Conduct a Reverse Shell                  | Low      | ⬜ Not Started |
 | OverTheWire Wargames                     | Low      | ⬜ Not Started |
 | Mini Hidden Logger (Tool Dev)            | Low      | ⬜ Not Started |
 | Patch Vulnerabilities (Metasploitable2)  | Low      | ⬜ Not Started |

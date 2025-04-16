@@ -77,6 +77,8 @@ This document tracks the creation, evolution, and exercises performed in my self
 ---
 ## Phase 4 – Installing Splunk (SIEM Integration)
 
+*Note: This is the only phase in the homelab that requires temporary internet access. Splunk is downloaded directly from the official site and installed on the Kali VM. After installation, return the VM is to host-only mode to preserve network isolation.*
+
 **Objective:** Install and configure Splunk on Kali Linux to serve as a SIEM platform for future log collection and monitoring.
 
 **Overview:** Splunk will be used to ingest and analyze logs from the lab environment, enabling simulated alerting and incident response workflows. This phase sets the foundation for blue team operations.
@@ -101,8 +103,13 @@ This document tracks the creation, evolution, and exercises performed in my self
 
 8. If you want it to run on start automatically: `sudo /opt/splunk/bin/splunk enable boot-start`
 
+Current Topology
+!['Simple Topology'](Images/Simple_Topology.png)
+
 ---
 ## Phase 5 – Splunk Log Ingestion and Detection
+
+*Note: This setup captures most user-level shell activity but does not log commands executed within Metasploit (msfconsole). Metasploit operates in its own interactive shell that does not write to .zsh_history, which limits visibility into post-exploitation activity unless additional logging (e.g., screen recording, TTY logging, or direct session transcript capture) is configured. This reflects a realistic gap in endpoint monitoring and highlights the importance of layered detection strategies beyond simple shell history tracking.*
 
 **Objective:** Configure Splunk to monitor *.zsh_history* in near real-time on Kali Linux to log and analyze terminal commands as part of simulated blue team operations.
 
