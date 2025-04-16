@@ -15,7 +15,7 @@ A self-hosted virtual lab built to simulate enterprise-grade IT operations and d
 
 ### [Malware Simulation: USB-Based Cross-Platform Ransomware](./malware-simulation)
 Capstone project exploring malware behavior and endpoint defense bypass via USB emulation.
-- Developed a cross-platform ransomware sample using Python, PowerShell, and terminal-based execution to support behavioral analysis
+- Developed a cross-platform ransomware simulation utilizing the Bash Bunny Mark II along with Python, PowerShell, and terminal-based execution to support behavioral analysis
 - Used a Bash Bunny Mark II USB emulation tool to test endpoint defense and privilege handling
 - Awarded 2nd Place at the 2024 Mid-Hudson Valley TechMeet for innovation and safe malware handling
 
