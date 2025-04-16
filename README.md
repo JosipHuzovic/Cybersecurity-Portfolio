@@ -8,7 +8,7 @@ Everything here was built for educational and demonstrative purposes, and tested
 ## Projects
 
 ### [Homelab: Network Defense & SIEM Tuning](./homelab)
-A self-hosted virtual lab built to simulate enterprise-grade IT operations and defensive security.
+This lab simulates internal reconnaissance, attack execution, and blue team response using Splunk, pfSense, and a segmented network of VMs.
 - Simulated attack paths using Nmap, Metasploit, and reverse shells
 - Configured pfSense to segment network traffic and control inbound exploitation attempts
 - Ingested `.zsh_history` and synthetic logs into Splunk for near-real-time detection
