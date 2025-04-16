@@ -54,6 +54,9 @@ This lab is an evolving project designed to simulate key elements of a real-worl
 **Goal**: Build a fully self-contained environment for simulating attacks, logging incidents, and practicing remediation across multiple OSes and network layers.
 
 ---
+## License
+All original content in this portfolio — including documentation, write-ups, and code — is licensed under the MIT License.  
+See the [LICENSE](./LICENSE) file for full details.
 
 **Thanks for checking out my portfolio!**  
 If you'd like to connect, feel free to reach out via [LinkedIn](https://www.linkedin.com/in/josip-huzovic/) or email me at josiphuzovic@gmail.com.
