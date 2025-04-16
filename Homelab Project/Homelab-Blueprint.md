@@ -7,9 +7,11 @@ This document tracks the creation, evolution, and exercises performed in my self
 ## Table of Contents
 
 - [Phase 1 – Core Components](#phase-1--core-components)
+- [Topology – Core Setup (Phase 1)](#topology--core-setup-phase-1)
 - [Phase 2 – Network Discovery](#phase-2--network-discovery)
 - [Phase 3 – Initial Exploitation](#phase-3--initial-exploitation-with-metasploit)
 - [Phase 4 – Installing Splunk (SIEM Integration)](#phase-4--installing-splunk-siem-integration)
+- [Topology – After Splunk Installation](#current-topology)
 - [Phase 5 - Splunk Log Ingestion and Detection](#phase-5--splunk-log-ingestion-and-detection)
 - [Next Up](#next-up)
 
@@ -25,6 +27,13 @@ This document tracks the creation, evolution, and exercises performed in my self
 - Installed **Kali Linux (Attacker)**
 - Installed **Metasploitable2 (Target)**
 - Configured both VMs to run on **Host-Only networking** for isolation and safety
+
+---
+## Topology – Core Setup (Phase 1)
+
+<p align="center">
+  <img src="Images/Topology_Core_Setup_Phase_1.png" alt="Simple Topology" style="max-width: 100%;">
+</p>
 
 ---
 ## Phase 2 - Identifying the Target Machine (Network Discovery)
@@ -77,7 +86,7 @@ This document tracks the creation, evolution, and exercises performed in my self
 ---
 ## Phase 4 – Installing Splunk (SIEM Integration)
 
-*Note: This is the only phase in the homelab that requires temporary internet access. Splunk is downloaded directly from the official site and installed on the Kali VM. After installation, return the VM is to host-only mode to preserve network isolation.*
+*Note: This is the only phase in the homelab that requires temporary internet access. Splunk is downloaded directly from the official site and installed on the Kali VM. After installation, return the VM to host-only mode to preserve network isolation.*
 
 **Objective:** Install and configure Splunk on Kali Linux to serve as a SIEM platform for future log collection and monitoring.
 
@@ -104,10 +113,10 @@ This document tracks the creation, evolution, and exercises performed in my self
 8. If you want it to run on start automatically: `sudo /opt/splunk/bin/splunk enable boot-start`
 
 ---
-## Current Topology:  
+## Topology – After Splunk Installation  
 
 <p align="center">
-  <img src="Images/Simple_Topology.png" alt="Simple Topology" style="max-width: 100%;">
+  <img src="Images/Topology_After_Splunk_Installation.png" alt="Simple Topology" style="max-width: 100%;">
 </p>
 
 ---
@@ -139,9 +148,11 @@ This document tracks the creation, evolution, and exercises performed in my self
 
 9. Click Start Searching to be taken to the Splunk Search & Reporting dashboard
 
-10. In the search bar, verify you're search is the same as the one below: 
+10. In the search bar, use the following query:
 
-![`source="/home/kali/.zsh_history" host="kali" sourcetype="zsh_current"`](Images/Search_Parameters.png)
+<p align="center">
+  <img src="Images/Search_Parameters.png" alt="Splunk Search Screenshot" style="max-width: 100%;">
+</p>
 
 11. By default, the .zsh_history file only updates when the terminal session ends. To manually update it, use the command: ```fc -W```
 
