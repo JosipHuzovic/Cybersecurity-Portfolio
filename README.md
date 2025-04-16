@@ -4,6 +4,7 @@ Welcome! I'm Josip, a cybersecurity graduate passionate about system defense, in
 
 Everything here was built for educational and demonstrative purposes, and tested safely in isolated virtual labs.
 
+---
 ## Projects
 
 ### [Homelab: Network Defense & SIEM Tuning](./homelab)
@@ -18,12 +19,14 @@ Capstone project exploring malware behavior and endpoint defense bypass via USB 
 - Used a Bash Bunny Mark II USB emulation tool to test endpoint defense and privilege handling
 - Awarded 2nd Place at the 2024 Mid-Hudson Valley TechMeet for innovation and safe malware handling
 
+---
 ## Tools & Technologies
 - **Security Tools:** Splunk, Wireshark, Nessus, pfSense
 - **Languages:** Python, SQL, Bash, HTML/CSS, JavaScript
 - **Infrastructure:** VMware, VirtualBox, Cisco Packet Tracer
 - **Certifications:** CompTIA Security+ (2024), Google Cybersecurity Foundations (2025)
 
+---
 ## What I'm Learning Now
 I'm currently exploring:
 - Endpoint Detection & Response (EDR) concepts
@@ -31,7 +34,6 @@ I'm currently exploring:
 - Basics of cloud security (AWS & Azure fundamentals)
 
 ---
-
 ## License
 All original content in this portfolio, including documentation, write-ups, and code, is licensed under the MIT License.
 See the [LICENSE](./LICENSE) file for full details.
