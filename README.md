@@ -28,5 +28,9 @@ I'm currently exploring:
 
 ---
 
+## License
+All original content in this portfolio — including documentation, write-ups, and code — is licensed under the MIT License.  
+See the [LICENSE](./LICENSE) file for full details.
+
 **Thanks for checking out my portfolio!**  
 If you'd like to connect, feel free to reach out via [LinkedIn](https://www.linkedin.com/in/josip-huzovic/) or email me at josiphuzovic@gmail.com.
