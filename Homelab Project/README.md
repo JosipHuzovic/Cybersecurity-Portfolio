@@ -1,6 +1,13 @@
 # Personal Homelab Project
+This self-hosted lab simulates enterprise systems using virtual machines, firewall segmentation, and network monitoring tools to build hands-on experience in IT support, diagnostics, and incident response workflows.
 
-This self-hosted lab simulates enterprise systems using virtual machines, firewalls, and network monitoring tools to gain experience in IT support, diagnostics, and incident response workflows.
+## Skills Demonstrated
+- Network Scanning & Reconnaissance
+- Vulnerability Identification & Exploitation
+- Log Analysis & SIEM Tuning
+- Firewall Configuration & Segmentation
+- Incident Response Documentation
+
 
 ## Setup
 - VMware Workstation
@@ -36,9 +43,9 @@ This lab is an evolving project designed to simulate key elements of a real-worl
 | Download Kali Linux                      | High     | ✅ Done       |
 | Acquire Defense Box (Metasploitable2)    | High     | ✅ Done       |
 | Conduct Initial Exploitation             | High     | ✅ Done       |
-| Install a SIEM                           | Medium   | ✅ Done       |
-| Manage SIEM Effectively                  | Medium   | 🔄 In Progress |
-| Use Wireshark to Capture Packets         | Low      | ⬜ Not Started |
+| Install a SIEM (Splunk)                  | Medium   | ✅ Done       |
+| Manage SIEM Effectively                  | Medium   | ✅ Done       |
+| Use Wireshark to Capture Packets         | Low      | 🔄 In Progress |
 | Conduct a Reverse Shell                  | Low      | ⬜ Not Started |
 | OverTheWire Wargames                     | Low      | ⬜ Not Started |
 | Mini Hidden Logger (Tool Dev)            | Low      | ⬜ Not Started |

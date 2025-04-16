@@ -101,5 +101,38 @@ If successful, this will spawn a root shell on the target system. This is for ed
 8. If you want it to run on start automatically: `sudo /opt/splunk/bin/splunk enable boot-start`
 
 ---
+## Phase 5 – Splunk Log Ingestion and Detection
+
+**Objective:** Configure Splunk to monitor `.zsh_history` in near real-time on Kali Linux to log and analyze terminal commands as part of simulated blue team operations.
+
+**Overview:** By setting up Splunk to watch the .zsh_history file, we can track executed terminal commands from the Kali Linux VM. This gives visibility into attacker behavior and supports future correlation and detection use cases. To make logs appear instantly in Splunk, we'll also configure the shell to write history after every command.
+
+**Steps:**
+
+1. Log in to Splunk via the browser (typically at http://kali:8000)
+
+2. Scroll down and click on Add Data
+
+3. Choose Monitor as the method of adding data
+
+4. Select Files and Directories
+
+5. Under File or Directory, enter the path: `/home/kali/.zsh_history`, then click Next
+
+6. Set the Source Type to zsh_current, then click Next
+
+7. On the input settings page, leave defaults and click Review
+
+8. Click Submit to finalize the configuration
+
+9. Click Start Searching to be taken to the Splunk Search & Reporting dashboard
+
+10. In the search bar, verify you're search is the same as the one below: ![Search Parameters](Images/Search%20parameters.png)
+
+11. By default, the .zsh_history file only updates when the terminal session ends. To manually update it, use the command: ```fc -W```
+
+*If everything was set up correctly, you should now see your terminal command logs appearing in Splunk. If something isn’t working, navigate to the top right of the Splunk interface and click on Settings. Under Data Inputs, go to Files & Directories, scroll down to find the entry for `/home/kali/.zsh_history`, and delete it. Then, restart the process from Step 1 above to reconfigure the input.*
+
+---
 ## Next Up
-- Phase 5 – Log Ingestion and Detection
+- Phase 5 – Splunk Log Ingestion and Detection
