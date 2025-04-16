@@ -10,6 +10,7 @@ This document tracks the creation, evolution, and exercises performed in my self
 - [Phase 2 – Network Discovery](#phase-2--network-discovery)
 - [Phase 3 – Initial Exploitation](#phase-3--initial-exploitation-with-metasploit)
 - [Phase 4 – Installing Splunk (SIEM Integration)](#phase-4--installing-splunk-siem-integration)
+- [Phase 5 - Splunk Log Ingestion and Detection](#phase-5--splunk-log-ingestion-and-detection)
 - [Next Up](#next-up)
 
 ---
@@ -127,7 +128,7 @@ If successful, this will spawn a root shell on the target system. This is for ed
 
 9. Click Start Searching to be taken to the Splunk Search & Reporting dashboard
 
-10. In the search bar, verify you're search is the same as the one below: ![Search Parameters](Images/Search%20parameters.png)
+10. In the search bar, verify you're search is the same as the one below: ![`sourcetype="zsh_current"`](Images/Search_Parameters.png)
 
 11. By default, the .zsh_history file only updates when the terminal session ends. To manually update it, use the command: ```fc -W```
 
