@@ -14,7 +14,7 @@ A self-hosted virtual lab built to simulate enterprise-grade IT operations and d
 - Ingested `.zsh_history` and synthetic logs into Splunk for near-real-time detection
 - Documented incident response flow based on triggered alerts and manual correlation
 
-### [Malware Simulation: USB-Based Cross-Platform Ransomware](./malware USB Simulation)
+### [Malware Simulation: USB-Based Cross-Platform Ransomware](./Malware%20USB%20Simulation)
 Simulated real-world ransomware behavior using a Bash Bunny Mark II USB emulation device, with OS-aware logic and ethical recovery workflows. Includes a full-featured Linux payload developed using Ducky Script, GPG-based encryption, and systemd-based persistence.
 - Payload detects OS (Windows or Linux) and adjusts attack strategy accordingly
 - Designed for AV evasion and privilege-aware execution using PowerShell and terminal-based delivery
@@ -22,7 +22,7 @@ Simulated real-world ransomware behavior using a Bash Bunny Mark II USB emulatio
 - Built and tested in VMware-based sandbox environments
 - Awarded 2nd Place at the 2024 Mid-Hudson Valley TechMeet for innovation and safe malware handling
 
-Full Report: [Capstone Technical Write-Up (PDF)](./Malware USB Simulation/Cybersecurity_Capstone_Bash_Bunny_Project.pdf)
+Full Report: [Capstone Technical Write-Up (PDF)](./Malware%20USB%20Simulation/Cybersecurity_Capstone_Bash_Bunny_Project.pdf)
 
 ---
 ## Tools & Technologies
@@ -37,10 +37,10 @@ Full Report: [Capstone Technical Write-Up (PDF)](./Malware USB Simulation/Cybers
 - Bachelor of Science in Cybersecurity, Marist University (Expected May 2025)
 
 ---
-## Thanks for checking out my portfolio!
-If you'd like to connect, feel free to reach out via [LinkedIn](https://www.linkedin.com/in/josip-huzovic/) or email me at josiphuzovic@gmail.com.
-
----
 ## License
 All original content in this portfolio, including documentation, write-ups, and code, is licensed under the MIT License.
 See the [LICENSE](./LICENSE) file for full details.
+
+---
+## Thanks for checking out my portfolio!
+If you'd like to connect, feel free to reach out via [LinkedIn](https://www.linkedin.com/in/josip-huzovic/) or email me at josiphuzovic@gmail.com.
