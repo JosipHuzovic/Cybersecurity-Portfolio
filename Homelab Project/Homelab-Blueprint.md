@@ -104,9 +104,9 @@ This document tracks the creation, evolution, and exercises performed in my self
 ---
 ## Phase 5 – Splunk Log Ingestion and Detection
 
-**Objective:** Configure Splunk to monitor `.zsh_history` in near real-time on Kali Linux to log and analyze terminal commands as part of simulated blue team operations.
+**Objective:** Configure Splunk to monitor *.zsh_history* in near real-time on Kali Linux to log and analyze terminal commands as part of simulated blue team operations.
 
-**Overview:** By setting up Splunk to watch the .zsh_history file, we can track executed terminal commands from the Kali Linux VM. This gives visibility into attacker behavior and supports future correlation and detection use cases. To make logs appear instantly in Splunk, we'll also configure the shell to write history after every command.
+**Overview:** By setting up Splunk to watch the *.zsh_history* file, we can track executed terminal commands from the Kali Linux VM. This gives visibility into attacker behavior and supports future correlation and detection use cases. To make logs appear instantly in Splunk, we'll also configure the shell to write history after every command.
 
 **Steps:**
 
@@ -138,4 +138,4 @@ This document tracks the creation, evolution, and exercises performed in my self
 
 ---
 ## Next Up
-- Phase 6 – 
+- Phase 6 – Firewall Setup
