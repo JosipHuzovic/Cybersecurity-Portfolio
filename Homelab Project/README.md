@@ -1,6 +1,7 @@
 # Personal Homelab Project
 This self-hosted lab simulates enterprise systems using virtual machines, firewall segmentation, and network monitoring tools to build hands-on experience in IT support, diagnostics, and incident response workflows.
 
+---
 ## Skills Demonstrated
 - Network Scanning & Reconnaissance
 - Vulnerability Identification & Exploitation
@@ -8,16 +9,18 @@ This self-hosted lab simulates enterprise systems using virtual machines, firewa
 - Firewall Configuration & Segmentation
 - Incident Response Documentation
 
-
+---
 ## Setup
 - VMware Workstation
 - Hosts: Kali Linux & Metasploitable2
 
+---
 ## Tools Used
 - Wireshark for packet inspection and troubleshooting
 - Splunk for log monitoring and simulated ticket triage
 - pfSense for firewall policy and subnet segmentation
 
+---
 ## Scenarios Practiced
 - **Discovered and profiled live hosts** using `nmap` and `ifconfig` to map internal network topology
 - **Enumerated open ports and services** with `nmap -sV` to identify potential attack vectors
@@ -28,11 +31,12 @@ This self-hosted lab simulates enterprise systems using virtual machines, firewa
 - **Configured pfSense firewall rules** to segment networks and observe blocked vs. allowed traffic patterns
 - **Documented incident response workflows** based on Splunk alerting and log search queries
 
-
+---
 ## Key Takeaways
 - Gained hands-on experience with log analysis, troubleshooting, and user/system behavior
 - Learned to simulate real-world IT support cases using controlled environments
 
+---
 ## Project Roadmap & Goals
 
 This lab is an evolving project designed to simulate key elements of a real-world IT and cybersecurity environment. Below is a snapshot of tracked tasks and planned scenarios, prioritized by importance.

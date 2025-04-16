@@ -1,6 +1,6 @@
 # Josip Huzovic – Cybersecurity & IT Portfolio
 
-Welcome! I'm Josip, a cybersecurity graduate passionate about system defense, incident response, and practical, lab-based learning. This portfolio showcases my hands-on projects, from malware simulation to homelab network defense, all developed in controlled environments to reflect real-world challenges.
+I'm Josip, a cybersecurity graduate focused on building and testing real-world attack and defense scenarios. Projects range from USB-based ransomware simulations to SIEM tuning and log correlation inside enterprise-style virtual labs.
 
 Everything here was built for educational and demonstrative purposes, and tested safely in isolated virtual labs.
 
@@ -9,34 +9,38 @@ Everything here was built for educational and demonstrative purposes, and tested
 
 ### [Homelab: Network Defense & SIEM Tuning](./homelab)
 A self-hosted virtual lab built to simulate enterprise-grade IT operations and defensive security.
-- Built and managed a virtualized lab using VMware with Windows/Linux hosts
-- Configured pfSense firewall, Wireshark, and Splunk for network inspection and log monitoring
-- Simulated system issues and resolved support ticket scenarios in a sandboxed environment
+- Simulated attack paths using Nmap, Metasploit, and reverse shells
+- Configured pfSense to segment network traffic and control inbound exploitation attempts
+- Ingested `.zsh_history` and synthetic logs into Splunk for near-real-time detection
+- Documented incident response flow based on triggered alerts and manual correlation
 
-### [Malware Simulation: USB-Based Cross-Platform Ransomware](./malware-simulation)
-Capstone project exploring malware behavior and endpoint defense bypass via USB emulation.
-- Developed a cross-platform ransomware simulation utilizing the Bash Bunny Mark II along with Python, PowerShell, and terminal-based execution to support behavioral analysis
-- Used a Bash Bunny Mark II USB emulation tool to test endpoint defense and privilege handling
+### [Malware Simulation: USB-Based Cross-Platform Ransomware](./malware-USB-Simulation)
+Simulated real-world ransomware behavior using a Bash Bunny Mark II USB emulation device, with OS-aware logic and ethical recovery workflows. Includes a full-featured Linux payload developed using Ducky Script, GPG-based encryption, and systemd-based persistence.
+- Payload detects OS (Windows or Linux) and adjusts attack strategy accordingly
+- Designed for AV evasion and privilege-aware execution using PowerShell and terminal-based delivery
+- Includes full recovery script and test validation procedures
+- Built and tested in VMware-based sandbox environments
 - Awarded 2nd Place at the 2024 Mid-Hudson Valley TechMeet for innovation and safe malware handling
+
+Full Report: [Capstone Technical Write-Up (PDF)](./Malware-USB-Simulation/Cybersecurity_Capstone_Bash_Bunny_Project.pdf)
 
 ---
 ## Tools & Technologies
-- **Security Tools:** Splunk, Wireshark, Nessus, pfSense
-- **Languages:** Python, SQL, Bash, HTML/CSS, JavaScript
-- **Infrastructure:** VMware, VirtualBox, Cisco Packet Tracer
-- **Certifications:** CompTIA Security+ (2024), Google Cybersecurity Foundations (2025)
+- **Languages:** Python, PowerShell, Bash, SQL, JavaScript, Ducky Script
+- **Tools:** Splunk, Wireshark, Nessus, pfSense, Cisco Packet Tracer
+- **Platforms:** VMware Workstation, VirtualBox, Bash Bunny Mark II
 
 ---
-## What I'm Learning Now
-I'm currently exploring:
-- Endpoint Detection & Response (EDR) concepts
-- Log correlation techniques for threat hunting
-- Basics of cloud security (AWS & Azure fundamentals)
+## Credentials
+- CompTIA Security+ (Issued Oct 2024)
+- Google Cybersecurity Foundations (Issued Feb 2025)
+- Bachelor of Science in Cybersecurity, Marist University (Expected May 2025)
+
+---
+**Thanks for checking out my portfolio!**  
+If you'd like to connect, feel free to reach out via [LinkedIn](https://www.linkedin.com/in/josip-huzovic/) or email me at josiphuzovic@gmail.com.
 
 ---
 ## License
 All original content in this portfolio, including documentation, write-ups, and code, is licensed under the MIT License.
 See the [LICENSE](./LICENSE) file for full details.
-
-**Thanks for checking out my portfolio!**  
-If you'd like to connect, feel free to reach out via [LinkedIn](https://www.linkedin.com/in/josip-huzovic/) or email me at josiphuzovic@gmail.com.
