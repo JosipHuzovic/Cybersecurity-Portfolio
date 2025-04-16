@@ -49,7 +49,7 @@ This document tracks the creation, evolution, and exercises performed in my self
 5. To identify running services and their versions, use the following: ```nmap -sV [target_ip]```. This provides more actionable detail for later exploitation or analysis.
 
 
-At this stage, the vulnerable system has been identified and its services have been enumerated. This completes the initial reconnaissance phase. Next, we’ll begin exploring exploitation techniques using Metasploit.
+*At this stage, the vulnerable system has been identified and its services have been enumerated. This completes the initial reconnaissance phase. Next, we’ll begin exploring exploitation techniques using Metasploit.*
 
 ---
 ## Phase 3 – Initial Exploitation with Metasploit
@@ -72,7 +72,7 @@ At this stage, the vulnerable system has been identified and its services have b
 
 6. Run the Exploit: ```exploit```
 
-If successful, this will spawn a root shell on the target system. This is for educational purposes only and should never be performed outside of authorized lab environments.
+*If successful, this will spawn a root shell on the target system. This is for educational purposes only and should never be performed outside of authorized lab environments.*
 
 ---
 ## Phase 4 – Installing Splunk (SIEM Integration)
@@ -110,7 +110,7 @@ If successful, this will spawn a root shell on the target system. This is for ed
 
 **Steps:**
 
-1. Log in to Splunk via the browser (typically at http://kali:8000)
+1. Log in to Splunk via the browser (typically at *http://kali:8000*)
 
 2. Scroll down and click on Add Data
 
@@ -128,7 +128,9 @@ If successful, this will spawn a root shell on the target system. This is for ed
 
 9. Click Start Searching to be taken to the Splunk Search & Reporting dashboard
 
-10. In the search bar, verify you're search is the same as the one below: ![`sourcetype="zsh_current"`](Images/Search_Parameters.png)
+10. In the search bar, verify you're search is the same as the one below: 
+
+![`source="/home/kali/.zsh_history" host="kali" sourcetype="zsh_current"`](Images/Search_Parameters.png)
 
 11. By default, the .zsh_history file only updates when the terminal session ends. To manually update it, use the command: ```fc -W```
 
@@ -136,4 +138,4 @@ If successful, this will spawn a root shell on the target system. This is for ed
 
 ---
 ## Next Up
-- Phase 5 – Splunk Log Ingestion and Detection
+- Phase 6 – 
