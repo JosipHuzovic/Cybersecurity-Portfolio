@@ -1,15 +1,19 @@
 # Josip Huzovic – Cybersecurity & IT Portfolio
 
-Welcome! I'm Josip, a cybersecurity graduate passionate about system defense, incident response, and practical lab-based learning. This portfolio highlights projects and hands-on experiences that showcase my skills in IT support, security operations, and compliance awareness.
+Welcome! I'm Josip, a cybersecurity graduate passionate about system defense, incident response, and practical, lab-based learning. This portfolio showcases my hands-on projects, from malware simulation to homelab network defense, all developed in controlled environments to reflect real-world challenges.
+
+Everything here was built for educational and demonstrative purposes, and tested safely in isolated virtual labs.
 
 ## Projects
 
-### Homelab: IT Infrastructure & Risk Monitoring
+### [Homelab: Network Defense & SIEM Tuning](./homelab)
+A self-hosted virtual lab built to simulate enterprise-grade IT operations and defensive security.
 - Built and managed a virtualized lab using VMware with Windows/Linux hosts
 - Configured pfSense firewall, Wireshark, and Splunk for network inspection and log monitoring
 - Simulated system issues and resolved support ticket scenarios in a sandboxed environment
 
-### Capstone Project: Malware Simulation & Response Planning
+### [Malware Simulation: USB-Based Cross-Platform Ransomware](./malware-simulation)
+Capstone project exploring malware behavior and endpoint defense bypass via USB emulation.
 - Developed a cross-platform ransomware sample using Python, PowerShell, and terminal-based execution to support behavioral analysis
 - Used a Bash Bunny Mark II USB emulation tool to test endpoint defense and privilege handling
 - Awarded 2nd Place at the 2024 Mid-Hudson Valley TechMeet for innovation and safe malware handling
@@ -29,7 +33,7 @@ I'm currently exploring:
 ---
 
 ## License
-All original content in this portfolio — including documentation, write-ups, and code — is licensed under the MIT License.  
+All original content in this portfolio, including documentation, write-ups, and code, is licensed under the MIT License.
 See the [LICENSE](./LICENSE) file for full details.
 
 **Thanks for checking out my portfolio!**  
