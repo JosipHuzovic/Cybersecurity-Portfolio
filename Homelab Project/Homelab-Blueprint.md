@@ -7,7 +7,7 @@ This document tracks the creation, evolution, and exercises performed in my self
 ## Table of Contents
 
 - [Phase 1 – Core Components](#phase-1--core-components)
-- [Topology – Core Setup (Phase 1)](#topology--core-setup-phase-1)
+- [Topology – Core Setup](#topology--core-setup-phase-1)
 - [Phase 2 – Network Discovery](#phase-2--network-discovery)
 - [Phase 3 – Initial Exploitation](#phase-3--initial-exploitation-with-metasploit)
 - [Phase 4 – Installing Splunk (SIEM Integration)](#phase-4--installing-splunk-siem-integration)
@@ -29,7 +29,7 @@ This document tracks the creation, evolution, and exercises performed in my self
 - Configured both VMs to run on **Host-Only networking** for isolation and safety
 
 ---
-## Topology – Core Setup (Phase 1)
+## Topology – Core Setup
 
 <p align="center">
   <img src="Images/Topology_Core_Setup_Phase_1.png" alt="Simple Topology" style="max-width: 100%;">
