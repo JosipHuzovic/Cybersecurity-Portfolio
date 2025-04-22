@@ -73,7 +73,7 @@ Using tools like `ifconfig` and `nmap`, this phase simulates an attacker scannin
 
 
 
-<p align="center"><em>At this stage, the vulnerable system has been identified and its services have been enumerated. This completes the initial reconnaissance phase. Next, we’ll begin exploring exploitation techniques using Metasploit.</em></p>
+<h3 align="center"><em>At this stage, the vulnerable system has been identified and its services have been enumerated. This completes the initial reconnaissance phase. Next, we’ll begin exploring exploitation techniques using Metasploit.</em></h3>
 
 ---
 <a name="phase3"></a><h1 align="center"><strong>Phase 3 – Initial Exploitation with Metasploit</strong></h1> 
@@ -114,12 +114,12 @@ This phase simulates a real-world attack by exploiting the vulnerable vsFTPd ser
    exploit
    ```
 
-<p align="center"><em>If successful, this will spawn a root shell on the target system. This is for educational purposes only and should never be performed outside of authorized lab environments.</em></p>
+<h3 align="center"><em>If successful, this will spawn a root shell on the target system. This is for educational purposes only and should never be performed outside of authorized lab environments.</em></h3>
 
 ---
 <a name="phase4"></a><h1 align="center"><strong>Phase 4 – Installing Splunk (SIEM Integration)</strong></h1> 
 
-<p align="center"><em>This is the only phase in the homelab that requires temporary internet access. Splunk is downloaded directly from the official site and installed on the Kali VM. After installation, return the VM to host-only mode to preserve network isolation.</em></p>
+<h3 align="center"><em>This is the only phase in the homelab that requires temporary internet access. Splunk is downloaded directly from the official site and installed on the Kali VM. After installation, return the VM to host-only mode to preserve network isolation.</em></h3>
 
 ### Objective:  
 Install and configure Splunk on Kali Linux to serve as a SIEM platform for future log collection and monitoring.
@@ -145,7 +145,7 @@ Splunk will be used to ingest and analyze logs from the lab environment, enablin
    sudo /opt/splunk/bin/splunk start --accept-license
    ```
 
-<p align="center"><em>Splunk version numbers and filenames may change over time, adjust the URL and commands accordingly.</p></em>
+<h3 align="center"><em>Splunk version numbers and filenames may change over time, adjust the URL and commands accordingly.</h3></em>
 
 4. When prompted, set the Splunk admin username and password.
 
@@ -175,7 +175,7 @@ Splunk will be used to ingest and analyze logs from the lab environment, enablin
 
 <a name="phase5"></a><h1 align="center"><strong>Phase 5 – Splunk Log Ingestion and Detection</strong></h1>
 
-<p align="center"><em>This setup captures most user-level shell activity but does not log commands executed within Metasploit (msfconsole). Metasploit operates in its own interactive shell that does not write to .zsh_history, which limits visibility into post-exploitation activity unless additional logging (e.g., screen recording, TTY logging, or direct session transcript capture) is configured. This reflects a realistic gap in endpoint monitoring and highlights the importance of layered detection strategies beyond simple shell history tracking.</em></p>
+<h3 align="center"><em>This setup captures most user-level shell activity but does not log commands executed within Metasploit (msfconsole). Metasploit operates in its own interactive shell that does not write to .zsh_history, which limits visibility into post-exploitation activity unless additional logging (e.g., screen recording, TTY logging, or direct session transcript capture) is configured. This reflects a realistic gap in endpoint monitoring and highlights the importance of layered detection strategies beyond simple shell history tracking.</h3></em>
 
 ### Objective:  
 Configure Splunk to monitor *.zsh_history* in near real-time on Kali Linux to log and analyze terminal commands as part of simulated blue team operations.
@@ -220,7 +220,7 @@ By setting up Splunk to watch the *.zsh_history* file, we can track executed ter
     fc -W
     ```
 
-<p align="center"><em>If everything was set up correctly, you should now see your terminal command logs appearing in Splunk. If something isn’t working, navigate to the top right of the Splunk interface and click on Settings. Under Data Inputs, go to Files & Directories, scroll down to find the entry for `/home/kali/.zsh_history`, and delete it. Then, restart the process from Step 1 above to reconfigure the input.</em></p>
+<h3 align="center"><em>If everything was set up correctly, you should now see your terminal command logs appearing in Splunk. If something isn’t working, navigate to the top right of the Splunk interface and click on Settings. Under Data Inputs, go to Files & Directories, scroll down to find the entry for `/home/kali/.zsh_history`, and delete it. Then, restart the process from Step 1 above to reconfigure the input.</em></h3>
 
 ---
 
@@ -234,14 +234,16 @@ This phase adds a pfSense firewall between the external attacker machine (Kali L
 
 ### Steps:
 
-1. **Download pfSense CE ISO**  
+1. Download **pfSense CE ISO**  
    - Link: [https://www.pfsense.org/download/](https://www.pfsense.org/download/)
 
-2. **Create a new VM in VMware Workstation**  
+2. Create a new VM in VMware Workstation  
    - Mount the pfSense ISO  
    - Assign:
      - `Network Adapter 1 (WAN)` → `Custom: VMnet2`
      - `Network Adapter 2 (LAN)` → `Custom: VMnet3`
+
+<h3 align="center"><em>You will likely have to enter the VMware virtual network editor to create VMnet2 and VMnet3, ensure dhcp is disabled for VMnet 3 as pfSense will have the automatic IP setup covered.</em></h3>
 
 3. **Install pfSense and assign interfaces**
    - `em0` → WAN (VMnet2)  
