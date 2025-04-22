@@ -6,22 +6,19 @@ This document tracks the creation, evolution, and exercises performed in my self
 
 ## Table of Contents
 
-- [Phase 1 – Core Components](#phase-1-core-components)
-  - [Topology – Core Setup](#topology--core-setup-phase-1)
-- [Phase 2 – Network Discovery](#phase-2--network-discovery)
-- [Phase 3 – Initial Exploitation](#phase-3--initial-exploitation-with-metasploit)
-- [Phase 4 – Installing Splunk (SIEM Integration)](#phase-4--installing-splunk-siem-integration)
-  - [Topology – After Splunk Installation](#current-topology)
-- [Phase 5 - Splunk Log Ingestion and Detection](#phase5-name)
-- [Phase 6 - Firewall Setup and Network Segmentation with pfSense](#phase-6--firewall-setup-and-network-segmentation-with-pfsense)
-- [Next Up](#next-up)
+- [Phase 1 – Core Components](#phase1)
+  - [Topology – Core Setup](#Topology_Core_Setup)
+- [Phase 2 – Network Discovery](#phase2)
+- [Phase 3 – Initial Exploitation](#phase3)
+- [Phase 4 – Installing Splunk (SIEM Integration)](#phase4)
+  - [Topology – After Splunk Installation](#Topology_Splunk_Installation)
+- [Phase 5 - Splunk Log Ingestion and Detection](#phase5)
+- [Phase 6 - Firewall Setup and Network Segmentation with pfSense](#phase6)
+- [Next Up](#Next_Up)
 
 ---
 
-<h2 align="center"><strong>
-Phase 1 - Core Components
-</strong></h2>
-
+<h2 align="center"><strong>Phase 1 - Core Components</strong></h2> <a name="phase1"></a>
 **Objective:**  
 Set up a self-contained, safe lab environment for cybersecurity testing and exploration.
 
@@ -34,16 +31,14 @@ This phase focuses on installing and configuring essential components: Kali Linu
 - Configured both VMs to run on **Host-Only networking** for isolation and safety
 
 ---
-<h2 align="center"><strong>
-## Topology – Core Setup
-</strong></h2>
+<h2 align="center"><strong>Topology – Core Setup</strong></h2> <a name="Topology_Core_Setup"></a>
 
 <p align="center">
   <img src="Images/Topology_Core_Setup_Phase_1.png" alt="Simple Topology" style="max-width: 100%;">
 </p>
 
 ---
-## Phase 2 - Identifying the Target Machine (Network Discovery)
+<h2 align="center"><strong>Phase 2 - Identifying the Target Machine (Network Discovery)</strong></h2> <a name="phase2"></a>
 
 ### Objective:  
 Identify live hosts and services within the isolated lab environment to simulate internal reconnaissance.
@@ -80,9 +75,7 @@ Using tools like `ifconfig` and `nmap`, this phase simulates an attacker scannin
 *At this stage, the vulnerable system has been identified and its services have been enumerated. This completes the initial reconnaissance phase. Next, we’ll begin exploring exploitation techniques using Metasploit.*
 
 ---
-<h2 align="center"><strong>
-## Phase 3 – Initial Exploitation with Metasploit
-</strong></h2>
+<h2 align="center"><strong>Phase 3 – Initial Exploitation with Metasploit</strong></h2> <a name="phase3"></a>
 
 **Objective:**  
 Leverage known vulnerabilities to gain unauthorized access to the target system using Metasploit Framework.
@@ -107,9 +100,7 @@ This phase simulates a real-world attack by exploiting the vulnerable vsFTPd ser
 *If successful, this will spawn a root shell on the target system. This is for educational purposes only and should never be performed outside of authorized lab environments.*
 
 ---
-<h2 align="center"><strong>
-## Phase 4 – Installing Splunk (SIEM Integration)
-</strong></h2>
+<h2 align="center"><strong>Phase 4 – Installing Splunk (SIEM Integration)</strong></h2> <a name="phase4"></a>
 
 *Note: This is the only phase in the homelab that requires temporary internet access. Splunk is downloaded directly from the official site and installed on the Kali VM. After installation, return the VM to host-only mode to preserve network isolation.*
 
@@ -140,18 +131,16 @@ Splunk will be used to ingest and analyze logs from the lab environment, enablin
 8. If you want it to run on start automatically: `sudo /opt/splunk/bin/splunk enable boot-start`
 
 ---
-<h2 align="center"><strong>
-Topology – After Splunk Installation  
-</strong></h2>
+<h2 align="center"><strong>Topology – After Splunk Installation  </strong></h2> <a name="Topology_Splunk_Installation"></a>
 
 <p align="center">
   <img src="Images/Topology_After_Splunk_Installation.png" alt="Simple Topology" style="max-width: 100%;">
 </p>
 
 ---
-<a name="phase5-name"></a>
+
 <!-- This heading is for anchor linking only -->
-<h2 align="center"><strong>Phase 5 – Splunk Log Ingestion and Detection</strong></h2>
+<h2 align="center"><strong>Phase 5 – Splunk Log Ingestion and Detection</strong></h2><a name="phase5"></a>
 
 *Note: This setup captures most user-level shell activity but does not log commands executed within Metasploit (msfconsole). Metasploit operates in its own interactive shell that does not write to .zsh_history, which limits visibility into post-exploitation activity unless additional logging (e.g., screen recording, TTY logging, or direct session transcript capture) is configured. This reflects a realistic gap in endpoint monitoring and highlights the importance of layered detection strategies beyond simple shell history tracking.*
 
@@ -192,7 +181,8 @@ By setting up Splunk to watch the *.zsh_history* file, we can track executed ter
 *If everything was set up correctly, you should now see your terminal command logs appearing in Splunk. If something isn’t working, navigate to the top right of the Splunk interface and click on Settings. Under Data Inputs, go to Files & Directories, scroll down to find the entry for `/home/kali/.zsh_history`, and delete it. Then, restart the process from Step 1 above to reconfigure the input.*
 
 ---
-## Phase 6 – Firewall Setup and Network Segmentation with pfSense
+<a name="phase"></a>
+<h2 align="center"><strong>Phase 6 – Firewall Setup and Network Segmentation with pfSense</strong></h2> <a name="phase6"></a>
 
 ### Objective:  
 Introduce a realistic network perimeter using a virtualized firewall (pfSense) to simulate internet-to-internal segmentation, enforce access controls, and monitor attack surface exposure.
@@ -282,5 +272,5 @@ This phase adds a pfSense firewall between the external attacker machine (Kali L
 
 
 
-## Next Up
+<h2 align="center"><strong> ## Next Up  </strong></h2><a name="Next_Up"></a>
 - Phase 7
