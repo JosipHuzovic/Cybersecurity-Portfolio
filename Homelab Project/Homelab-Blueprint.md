@@ -314,5 +314,5 @@ This phase adds a pfSense firewall between the external attacker machine (Kali L
 
 
 
-<a name="Next_Up"></a><h1 align="center"><strong> ## Next Up  </strong></h1>
+<a name="Next_Up"></a><h1 align="center"><strong>Next Up</strong></h1>
 - Phase 7
