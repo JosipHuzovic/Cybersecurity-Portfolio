@@ -10,7 +10,8 @@ This document tracks the creation, evolution, and exercises performed in my self
   - [Topology – Core Setup](#Topology_Core_Setup)
 - [Phase 2 – Network Discovery](#phase2)
 - [Phase 3 – Initial Exploitation](#phase3)
-- [Phase 6 - Firewall Setup and Network Segmentation with pfSense](#phase6)
+- [Phase 4 - Firewall Setup and Network Segmentation with pfSense](#phase4)
+- [Phase 5 – Enterprise SIEM Deployment (Splunk on Windows, pfSense log forwarding)](#phase5)
 - [Next Up](#Next_Up)
 
 <details>
@@ -122,118 +123,7 @@ This phase simulates a real-world attack by exploiting the vulnerable vsFTPd ser
 <p align="center"><em>If successful, this will spawn a root shell on the target system. This is for educational purposes only and should never be performed outside of authorized lab environments.</em></<p>
 
 ---
-<a name="phase4.8"></a><h1 align="center"><strong>Phase 4.8 – Temporary SIEM Deployment on Kali (Retired)</strong></h1> 
-<details>
-<h3 align="center"><em>This was the first iteration of deploying Splunk in the lab environment, hosted temporarily on Kali Linux. While functional for limited local testing, this setup does not reflect operational best practices. It has been fully replaced by the Windows-based deployment introduced in Phase 5.</em></<h3>
-
-<h3 align="center"><em>The content below remains as reference only.</em></<h3>
-
-
-### Objective:  
-Install and configure Splunk on Kali Linux to serve as a SIEM platform for future log collection and monitoring.
-
-### Overview:  
-Splunk will be used to ingest and analyze logs from the lab environment, enabling simulated alerting and incident response workflows. This phase sets the foundation for blue team operations.
-
-<p align="center"><em>This is a phase in the homelab that requires temporary internet access. Splunk is downloaded directly from the official site and installed on the Kali VM. After installation, return the VM to host-only mode to preserve network isolation.</em></<p>
-
-### Steps:
-
-
-1. Acquire the `wget` link for the Splunk installer (Linux .deb package):
-   ```bash
-   wget https://download.splunk.com/products/splunk/releases/9.4.1/linux/splunk-9.4.1-e3bdab203ac8-linux-amd64.deb
-   ```
-
-2. Install the downloaded Splunk package:
-   ```bash
-   sudo dpkg -i splunk-9.4.1-e3bdab203ac8-linux-amd64.deb
-   ```
-
-3. Start Splunk for the first time and accept the license:
-   ```bash
-   sudo /opt/splunk/bin/splunk start --accept-license
-   ```
-
-<p align="center"><em>Splunk version numbers and filenames may change over time, adjust the URL and commands accordingly.</<p></em>
-
-4. When prompted, set the Splunk admin username and password.
-
-5. Access the Splunk Web Interface from a browser:
-   ```bash
-   http://kali:8000
-   ```
-
-6. **(Optional)** To manually start Splunk after reboot:
-   ```bash
-   sudo /opt/splunk/bin/splunk start
-   ```
-
-7. **(Optional)** To automatically start Splunk on system boot:
-   ```bash
-   sudo /opt/splunk/bin/splunk enable boot-start
-   ```
-
----
-<a name="Topology_Splunk_Installation"></a><h1 align="center"><strong>Topology – After Splunk Installation  </strong></h1> 
-
-<p align="center">
-  <img src="Images/Topology_After_Splunk_Installation.png" alt="Simple Topology" style="max-width: 100%;">
-</p>
-</details>
----
-<a name="phase4.9"></a><h1 align="center"><strong>Phase 4.9 – Experimental .zsh_history Monitoring (Deprecated)</strong></h1>
-<details>
-<h3 align="center"><em>A quick experiment in terminal command tracking via Splunk file monitoring. Useful for attacker behavior proof-of-concept, but not scalable or reliable as a primary detection method.</em></<h3>
-
-### Objective:  
-Configure Splunk to monitor *.zsh_history* in near real-time on Kali Linux to log and analyze terminal commands as part of simulated blue team operations. This setup captures most user-level shell activity but does not log commands executed within Metasploit (msfconsole) as Metasploit operates in its own interactive shell that does not write to .zsh_history.
-
-### Overview:  
-By setting up Splunk to watch the *.zsh_history* file, we can track executed terminal commands from the Kali Linux VM. This gives visibility into attacker behavior and supports future correlation and detection use cases. To make logs appear instantly in Splunk, we'll also configure the shell to write history after every command.
-
-### Steps:
-
-1. Log in to the Splunk Web Interface:
-   ```bash
-   http://kali:8000
-   ```
-
-2. Click on **Add Data** from the main dashboard.
-
-3. Select **Monitor** as the data input method.
-
-4. Choose **Files and Directories** as the data source.
-
-5. Set the path to monitor:
-   ```bash
-   /home/kali/.zsh_history
-   ```
-
-6. Set the Source Type to:
-   ```bash
-   zsh_current
-   ```
-
-7. Leave the input settings as default, then click **Review** and **Submit**.
-
-8. Click **Start Searching** to go to the Splunk Search & Reporting dashboard.
-
-9. In the search bar, run a query similar to:
-   ```bash
-   source="/home/kali/.zsh_history" host="kali" sourcetype="zsh_current"
-   ```
-
-10. Ensure your shell writes commands to history immediately by running:
-    ```bash
-    fc -W
-    ```
-
-<p align="center"><em>If everything was set up correctly, you should now see your terminal command logs appearing in Splunk. If something isn’t working, navigate to the top right of the Splunk interface and click on Settings. Under Data Inputs, go to Files & Directories, scroll down to find the entry for `/home/kali/.zsh_history`, and delete it. Then, restart the process from Step 1 above to reconfigure the input.</em></<p>
-</details>
----
-
-<a name="phase6"></a><h1 align="center"><strong>Phase 6 – Firewall Setup and Network Segmentation with pfSense</strong></h1>
+<a name="phase4"></a><h1 align="center"><strong>Phase 4 – Firewall Setup and Network Segmentation with pfSense</strong></h1>
 
 ### Objective:  
 Introduce a realistic network perimeter using a virtualized firewall (pfSense) to simulate internet-to-internal segmentation, enforce access controls, and monitor attack surface exposure.
@@ -324,7 +214,124 @@ This phase adds a pfSense firewall between the external attacker machine (Kali L
       ```
     - Only ports allowed by **pfSense** should be accessible
 
+---
+<a name="phase4.8"></a><h1 align="center"><strong>Phase 4.8 – Temporary SIEM Deployment on Kali (Retired)</strong></h1> 
+<p align="center"><em>This was the first iteration of deploying Splunk in the lab environment, hosted temporarily on Kali Linux. While functional for limited local testing, this setup does not reflect operational best practices. It has been fully replaced by the Windows-based deployment introduced in Phase 5.</em></<p>
+
+<details>
+
+
+<h3 align="center"><em>The content below remains as reference only.</em></<h3>
+
+
+### Objective:  
+Install and configure Splunk on Kali Linux to serve as a SIEM platform for future log collection and monitoring.
+
+### Overview:  
+Splunk will be used to ingest and analyze logs from the lab environment, enabling simulated alerting and incident response workflows. This phase sets the foundation for blue team operations.
+
+<p align="center"><em>This is a phase in the homelab that requires temporary internet access. Splunk is downloaded directly from the official site and installed on the Kali VM. After installation, return the VM to host-only mode to preserve network isolation.</em></<p>
+
+### Steps:
+
+
+1. Acquire the `wget` link for the Splunk installer (Linux .deb package):
+   ```bash
+   wget https://download.splunk.com/products/splunk/releases/9.4.1/linux/splunk-9.4.1-e3bdab203ac8-linux-amd64.deb
+   ```
+
+2. Install the downloaded Splunk package:
+   ```bash
+   sudo dpkg -i splunk-9.4.1-e3bdab203ac8-linux-amd64.deb
+   ```
+
+3. Start Splunk for the first time and accept the license:
+   ```bash
+   sudo /opt/splunk/bin/splunk start --accept-license
+   ```
+
+<p align="center"><em>Splunk version numbers and filenames may change over time, adjust the URL and commands accordingly.</<p></em>
+
+4. When prompted, set the Splunk admin username and password.
+
+5. Access the Splunk Web Interface from a browser:
+   ```bash
+   http://kali:8000
+   ```
+
+6. **(Optional)** To manually start Splunk after reboot:
+   ```bash
+   sudo /opt/splunk/bin/splunk start
+   ```
+
+7. **(Optional)** To automatically start Splunk on system boot:
+   ```bash
+   sudo /opt/splunk/bin/splunk enable boot-start
+   ```
+
+---
+<a name="Topology_Splunk_Installation"></a><h1 align="center"><strong>Topology – After Splunk Installation  </strong></h1> 
+
+<p align="center">
+  <img src="Images/Topology_After_Splunk_Installation.png" alt="Simple Topology" style="max-width: 100%;">
+</p>
+</details>  
+<hr>
+<a name="phase4.9"></a><h1 align="center"><strong>Phase 4.9 – Experimental .zsh_history Monitoring (Deprecated)</strong></h1>
+<p align="center"><em>A quick experiment in terminal command tracking via Splunk file monitoring. Useful for attacker behavior proof-of-concept, but not scalable or reliable as a primary detection method.</em></<p>
+
+<details>
+
+### Objective:  
+Configure Splunk to monitor *.zsh_history* in near real-time on Kali Linux to log and analyze terminal commands as part of simulated blue team operations. This setup captures most user-level shell activity but does not log commands executed within Metasploit (msfconsole) as Metasploit operates in its own interactive shell that does not write to .zsh_history.
+
+### Overview:  
+By setting up Splunk to watch the *.zsh_history* file, we can track executed terminal commands from the Kali Linux VM. This gives visibility into attacker behavior and supports future correlation and detection use cases. To make logs appear instantly in Splunk, we'll also configure the shell to write history after every command.
+
+### Steps:
+
+1. Log in to the Splunk Web Interface:
+   ```bash
+   http://kali:8000
+   ```
+
+2. Click on **Add Data** from the main dashboard.
+
+3. Select **Monitor** as the data input method.
+
+4. Choose **Files and Directories** as the data source.
+
+5. Set the path to monitor:
+   ```bash
+   /home/kali/.zsh_history
+   ```
+
+6. Set the Source Type to:
+   ```bash
+   zsh_current
+   ```
+
+7. Leave the input settings as default, then click **Review** and **Submit**.
+
+8. Click **Start Searching** to go to the Splunk Search & Reporting dashboard.
+
+9. In the search bar, run a query similar to:
+   ```bash
+   source="/home/kali/.zsh_history" host="kali" sourcetype="zsh_current"
+   ```
+
+10. Ensure your shell writes commands to history immediately by running:
+    ```bash
+    fc -W
+    ```
+
+<p align="center"><em>If everything was set up correctly, you should now see your terminal command logs appearing in Splunk. If something isn’t working, navigate to the top right of the Splunk interface and click on Settings. Under Data Inputs, go to Files & Directories, scroll down to find the entry for `/home/kali/.zsh_history`, and delete it. Then, restart the process from Step 1 above to reconfigure the input.</em></<p>
+</details>  
+<hr>
+
+<h1 align="center"><strong>Phase 5 – Enterprise SIEM Deployment (Splunk on Windows, pfSense log forwarding)</strong></h1> <a name="phase5"></a>
+
 
 
 <a name="Next_Up"></a><h1 align="center"><strong>Next Up</strong></h1>
-- Phase 7
+- Phase 6 – Log Ingestion and Cross-Platform Correlation
