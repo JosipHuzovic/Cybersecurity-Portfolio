@@ -31,7 +31,7 @@ This phase focuses on installing and configuring essential components: Kali Linu
 - Configured both VMs to run on **Host-Only networking** for isolation and safety
 
 ---
-<h2 align="center"><strong>Topology – Core Setup</strong></h2> <a name="Topology_Core_Setup"></a>
+<a name="Topology_Core_Setup"></a><h2 align="center"><strong>Topology – Core Setup</strong></h2>
 
 <p align="center">
   <img src="Images/Topology_Core_Setup_Phase_1.png" alt="Simple Topology" style="max-width: 100%;">
