@@ -10,11 +10,16 @@ This document tracks the creation, evolution, and exercises performed in my self
   - [Topology – Core Setup](#Topology_Core_Setup)
 - [Phase 2 – Network Discovery](#phase2)
 - [Phase 3 – Initial Exploitation](#phase3)
-- [Phase 4 – Installing Splunk (SIEM Integration)](#phase4)
-  - [Topology – After Splunk Installation](#Topology_Splunk_Installation)
-- [Phase 5 - Splunk Log Ingestion and Detection](#phase5)
 - [Phase 6 - Firewall Setup and Network Segmentation with pfSense](#phase6)
 - [Next Up](#Next_Up)
+
+<details>
+  <summary><strong>Deprecated / Experimental Phases</strong></summary>
+
+- [Phase 4.8 – Temporary SIEM Deployment on Kali (Retired)](#phase4.8)
+- [Phase 4.9 - Experimental .zsh_history Monitoring (Deprecated)](#phase4.9)
+
+</details>
 
 ---
 
@@ -49,24 +54,24 @@ Using tools like `ifconfig` and `nmap`, this phase simulates an attacker scannin
 
 ### Steps:
 
-1. **Verify both VMs are running and on the same network.**
+1. Verify both VMs are running and on the same network.
 
-2. **Open a terminal on the Kali Linux VM and identify the local IP address and subnet:**
+2. Open a terminal on the **Kali Linux** VM and identify the local IP address and subnet:
    ```bash
    ifconfig
    ```
 
-3. **Run a ping sweep on the subnet to discover live hosts:**
+3. Run a **ping sweep** on the subnet to discover live hosts:
    ```bash
    nmap -sn 192.168.56.0/24
    ```
 
-4. **Once the Metasploitable2 IP address is identified, run a basic port scan:**
+4. Once the **Metasploitable2** IP address is identified, run a basic **port scan**:
    ```bash
    nmap [target_ip]
    ```
 
-5. **Enumerate running services and their versions:**
+5. Enumerate running services and their versions:
    ```bash
    nmap -sV [target_ip]
    ```
@@ -89,12 +94,12 @@ This phase simulates a real-world attack by exploiting the vulnerable vsFTPd ser
 1. Identify the vulnerable service from the previous scan:
    - Port 21 is open and running `vsFTPd 2.3.4`, which is known to have a backdoor vulnerability.
 
-2. Launch Metasploit Framework from Kali:
+2. Launch **Metasploit Framework** from **Kali**:
    ```bash
    msfconsole
    ```
 
-3. Search for the exploit module related to vsFTPd:
+3. Search for the exploit module related to **vsFTPd**:
    ```bash
    search vsftpd
    ```
@@ -117,15 +122,20 @@ This phase simulates a real-world attack by exploiting the vulnerable vsFTPd ser
 <p align="center"><em>If successful, this will spawn a root shell on the target system. This is for educational purposes only and should never be performed outside of authorized lab environments.</em></<p>
 
 ---
-<a name="phase4"></a><h1 align="center"><strong>Phase 4 – Installing Splunk (SIEM Integration)</strong></h1> 
+<a name="phase4.8"></a><h1 align="center"><strong>Phase 4.8 – Temporary SIEM Deployment on Kali (Retired)</strong></h1> 
+<details>
+<h3 align="center"><em>This was the first iteration of deploying Splunk in the lab environment, hosted temporarily on Kali Linux. While functional for limited local testing, this setup does not reflect operational best practices. It has been fully replaced by the Windows-based deployment introduced in Phase 5.</em></<h3>
 
-<p align="center"><em>This is the only phase in the homelab that requires temporary internet access. Splunk is downloaded directly from the official site and installed on the Kali VM. After installation, return the VM to host-only mode to preserve network isolation.</em></<p>
+<h3 align="center"><em>The content below remains as reference only.</em></<h3>
+
 
 ### Objective:  
 Install and configure Splunk on Kali Linux to serve as a SIEM platform for future log collection and monitoring.
 
 ### Overview:  
 Splunk will be used to ingest and analyze logs from the lab environment, enabling simulated alerting and incident response workflows. This phase sets the foundation for blue team operations.
+
+<p align="center"><em>This is a phase in the homelab that requires temporary internet access. Splunk is downloaded directly from the official site and installed on the Kali VM. After installation, return the VM to host-only mode to preserve network isolation.</em></<p>
 
 ### Steps:
 
@@ -154,12 +164,12 @@ Splunk will be used to ingest and analyze logs from the lab environment, enablin
    http://kali:8000
    ```
 
-6. (Optional) To manually start Splunk after reboot:
+6. **(Optional)** To manually start Splunk after reboot:
    ```bash
    sudo /opt/splunk/bin/splunk start
    ```
 
-7. (Optional) To automatically start Splunk on system boot:
+7. **(Optional)** To automatically start Splunk on system boot:
    ```bash
    sudo /opt/splunk/bin/splunk enable boot-start
    ```
@@ -170,15 +180,14 @@ Splunk will be used to ingest and analyze logs from the lab environment, enablin
 <p align="center">
   <img src="Images/Topology_After_Splunk_Installation.png" alt="Simple Topology" style="max-width: 100%;">
 </p>
-
+</details>
 ---
-
-<a name="phase5"></a><h1 align="center"><strong>Phase 5 – Splunk Log Ingestion and Detection</strong></h1>
-
-<p align="center"><em>This setup captures most user-level shell activity but does not log commands executed within Metasploit (msfconsole). Metasploit operates in its own interactive shell that does not write to .zsh_history, which limits visibility into post-exploitation activity unless additional logging (e.g., screen recording, TTY logging, or direct session transcript capture) is configured. This reflects a realistic gap in endpoint monitoring and highlights the importance of layered detection strategies beyond simple shell history tracking.</p></em>
+<a name="phase4.9"></a><h1 align="center"><strong>Phase 4.9 – Experimental .zsh_history Monitoring (Deprecated)</strong></h1>
+<details>
+<h3 align="center"><em>A quick experiment in terminal command tracking via Splunk file monitoring. Useful for attacker behavior proof-of-concept, but not scalable or reliable as a primary detection method.</em></<h3>
 
 ### Objective:  
-Configure Splunk to monitor *.zsh_history* in near real-time on Kali Linux to log and analyze terminal commands as part of simulated blue team operations.
+Configure Splunk to monitor *.zsh_history* in near real-time on Kali Linux to log and analyze terminal commands as part of simulated blue team operations. This setup captures most user-level shell activity but does not log commands executed within Metasploit (msfconsole) as Metasploit operates in its own interactive shell that does not write to .zsh_history.
 
 ### Overview:  
 By setting up Splunk to watch the *.zsh_history* file, we can track executed terminal commands from the Kali Linux VM. This gives visibility into attacker behavior and supports future correlation and detection use cases. To make logs appear instantly in Splunk, we'll also configure the shell to write history after every command.
@@ -221,7 +230,7 @@ By setting up Splunk to watch the *.zsh_history* file, we can track executed ter
     ```
 
 <p align="center"><em>If everything was set up correctly, you should now see your terminal command logs appearing in Splunk. If something isn’t working, navigate to the top right of the Splunk interface and click on Settings. Under Data Inputs, go to Files & Directories, scroll down to find the entry for `/home/kali/.zsh_history`, and delete it. Then, restart the process from Step 1 above to reconfigure the input.</em></<p>
-
+</details>
 ---
 
 <a name="phase6"></a><h1 align="center"><strong>Phase 6 – Firewall Setup and Network Segmentation with pfSense</strong></h1>
@@ -243,7 +252,7 @@ This phase adds a pfSense firewall between the external attacker machine (Kali L
      - `Network Adapter 1 (WAN)` → `Custom: VMnet2`
      - `Network Adapter 2 (LAN)` → `Custom: VMnet3`
 
-<p align="center"><em>You will likely have to enter the VMware virtual network editor to create VMnet2 and VMnet3, ensure dhcp is disabled for VMnet 3 as pfSense will have the automatic IP setup covered.</em></<p>
+<p align="center"><em>You will likely have to enter the VMware virtual network editor to create VMnet2 and VMnet3.</em></<p>
 
 3. **Install pfSense and assign interfaces**
    - `em0` → WAN (VMnet2)  
@@ -253,14 +262,15 @@ This phase adds a pfSense firewall between the external attacker machine (Kali L
    ```text
    WAN (em0): 192.168.20.1/24  
    LAN (em1): 192.168.1.1/24
+   ```
 
-5. **Disable VMware DHCP on VMnet2 and VMnet3**
+5. Disable VMware DHCP on **VMnet2** and **VMnet3**
    - Open the **Virtual Network Editor** in VMware Workstation
    - Select both `VMnet2` and `VMnet3`
    - Uncheck **“Use local DHCP service to distribute IP address”** for both
    - Click **Apply** to save changes
 
-6. **Configure Kali Linux (Attacker VM)**
+6. Configure **Kali Linux** (Attacker VM)
    - Connect Kali’s network adapter to `VMnet2`
    - Assign a static IP:
      ```bash
@@ -281,7 +291,7 @@ This phase adds a pfSense firewall between the external attacker machine (Kali L
      ping 192.168.1.1
      ```
 
-8. **Re-enable pfSense filtering (if previously disabled)**
+8. Re-enable pfSense filtering **(if previously disabled)**
    - If you used `pfctl -d` to troubleshoot earlier, re-enable packet filtering:
      ```bash
      pfctl -e
@@ -294,7 +304,7 @@ This phase adds a pfSense firewall between the external attacker machine (Kali L
      ```
    - Login using the default or previously configured credentials
 
-10. **Create a firewall rule to allow traffic from Kali to LAN**
+10. Create a firewall rule to allow traffic from **Kali** to LAN
     - Navigate to: `Firewall > Rules > WAN > Add`
     - Configure the rule as follows:
       - **Action:** Pass  
@@ -306,13 +316,13 @@ This phase adds a pfSense firewall between the external attacker machine (Kali L
       - **Log packets that are handled by this rule:** ✅ (enable logging)
     - Click **Save** and then **Apply Changes**
 
-11. **Test traffic from Kali to Metasploitable2**
-    - From Kali, confirm communication through the firewall:
+11. Test traffic from **Kali** to **Metasploitable2**
+    - From **Kali**, confirm communication through the firewall:
       ```bash
       ping 192.168.1.100
       nmap -p 21,22,80 192.168.1.100
       ```
-    - Only ports allowed by pfSense should be accessible
+    - Only ports allowed by **pfSense** should be accessible
 
 
 
