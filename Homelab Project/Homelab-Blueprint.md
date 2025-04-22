@@ -38,7 +38,7 @@ This phase focuses on installing and configuring essential components: Kali Linu
 </p>
 
 ---
-<h2 align="center"><strong>Phase 2 - Identifying the Target Machine (Network Discovery)</strong></h2> <a name="phase2"></a>
+<a name="phase2"></a><h2 align="center"><strong>Phase 2 - Identifying the Target Machine (Network Discovery)</strong></h2> 
 
 ### Objective:  
 Identify live hosts and services within the isolated lab environment to simulate internal reconnaissance.
@@ -75,7 +75,7 @@ Using tools like `ifconfig` and `nmap`, this phase simulates an attacker scannin
 *At this stage, the vulnerable system has been identified and its services have been enumerated. This completes the initial reconnaissance phase. Next, we’ll begin exploring exploitation techniques using Metasploit.*
 
 ---
-<h2 align="center"><strong>Phase 3 – Initial Exploitation with Metasploit</strong></h2> <a name="phase3"></a>
+<a name="phase3"></a><h2 align="center"><strong>Phase 3 – Initial Exploitation with Metasploit</strong></h2> 
 
 **Objective:**  
 Leverage known vulnerabilities to gain unauthorized access to the target system using Metasploit Framework.
@@ -100,7 +100,7 @@ This phase simulates a real-world attack by exploiting the vulnerable vsFTPd ser
 *If successful, this will spawn a root shell on the target system. This is for educational purposes only and should never be performed outside of authorized lab environments.*
 
 ---
-<h2 align="center"><strong>Phase 4 – Installing Splunk (SIEM Integration)</strong></h2> <a name="phase4"></a>
+<a name="phase4"></a><h2 align="center"><strong>Phase 4 – Installing Splunk (SIEM Integration)</strong></h2> 
 
 *Note: This is the only phase in the homelab that requires temporary internet access. Splunk is downloaded directly from the official site and installed on the Kali VM. After installation, return the VM to host-only mode to preserve network isolation.*
 
@@ -131,7 +131,7 @@ Splunk will be used to ingest and analyze logs from the lab environment, enablin
 8. If you want it to run on start automatically: `sudo /opt/splunk/bin/splunk enable boot-start`
 
 ---
-<h2 align="center"><strong>Topology – After Splunk Installation  </strong></h2> <a name="Topology_Splunk_Installation"></a>
+<a name="Topology_Splunk_Installation"></a><h2 align="center"><strong>Topology – After Splunk Installation  </strong></h2> 
 
 <p align="center">
   <img src="Images/Topology_After_Splunk_Installation.png" alt="Simple Topology" style="max-width: 100%;">
@@ -139,8 +139,7 @@ Splunk will be used to ingest and analyze logs from the lab environment, enablin
 
 ---
 
-<!-- This heading is for anchor linking only -->
-<h2 align="center"><strong>Phase 5 – Splunk Log Ingestion and Detection</strong></h2><a name="phase5"></a>
+<a name="phase5"></a><h2 align="center"><strong>Phase 5 – Splunk Log Ingestion and Detection</strong></h2>
 
 *Note: This setup captures most user-level shell activity but does not log commands executed within Metasploit (msfconsole). Metasploit operates in its own interactive shell that does not write to .zsh_history, which limits visibility into post-exploitation activity unless additional logging (e.g., screen recording, TTY logging, or direct session transcript capture) is configured. This reflects a realistic gap in endpoint monitoring and highlights the importance of layered detection strategies beyond simple shell history tracking.*
 
@@ -181,8 +180,8 @@ By setting up Splunk to watch the *.zsh_history* file, we can track executed ter
 *If everything was set up correctly, you should now see your terminal command logs appearing in Splunk. If something isn’t working, navigate to the top right of the Splunk interface and click on Settings. Under Data Inputs, go to Files & Directories, scroll down to find the entry for `/home/kali/.zsh_history`, and delete it. Then, restart the process from Step 1 above to reconfigure the input.*
 
 ---
-<a name="phase"></a>
-<h2 align="center"><strong>Phase 6 – Firewall Setup and Network Segmentation with pfSense</strong></h2> <a name="phase6"></a>
+
+<a name="phase6"></a><h2 align="center"><strong>Phase 6 – Firewall Setup and Network Segmentation with pfSense</strong></h2>
 
 ### Objective:  
 Introduce a realistic network perimeter using a virtualized firewall (pfSense) to simulate internet-to-internal segmentation, enforce access controls, and monitor attack surface exposure.
@@ -272,5 +271,5 @@ This phase adds a pfSense firewall between the external attacker machine (Kali L
 
 
 
-<h2 align="center"><strong> ## Next Up  </strong></h2><a name="Next_Up"></a>
+<a name="Next_Up"></a><h2 align="center"><strong> ## Next Up  </strong></h2>
 - Phase 7
