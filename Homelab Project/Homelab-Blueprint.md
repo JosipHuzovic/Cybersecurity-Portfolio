@@ -11,6 +11,7 @@ This document tracks the creation, evolution, and exercises performed in my self
 - [Phase 2 – Network Discovery](#phase2)
 - [Phase 3 – Initial Exploitation](#phase3)
 - [Phase 4 - pfSense Firewall Installation and Network Segmentation](#phase4)
+  - [Topology – With pfSense Firewall Only](#Topology_pfSense_Only)
 - [Phase 5 – Enterprise SIEM Setup & Deployment (Splunk on Windows VM)](#phase5)
 - [Phase 6 - Splunk & pfSense Log Integration and Tuning](#phase6)
   - [Topology – After SIEM & Log Integration](#Topology_After_SIEM_and_Log_Integration)
@@ -189,6 +190,14 @@ This phase adds a pfSense firewall between the external attacker machine (Kali L
      ```bash
      pfctl -e
      ```
+<hr>
+<a name="#Topology_pfSense_Only"><h1 align="center"><strong>Topology – With pfSense Firewall</strong></h1>
+
+<p align="center">
+  <img src="Images/Topology_With_pfSense_Firewall_Only.png" alt="Simple Topology" style="max-width: 100%;">
+</p>
+
+<hr>
 
 <hr>
 <a name="phase4.8"></a><h1 align="center"><strong>Phase 4.8 – Temporary SIEM Deployment on Kali (Retired)</strong></h1> 
@@ -475,7 +484,7 @@ index=* sourcetype=syslog
 *(screenshot placeholder: Splunk search with syslog results)*
 
 <hr>
-<a name="Topology_After_SIEM_and_Log_Integration"><h1 align="center"><strong>Lab Topology – After SIEM & Log Integration</strong></h1>
+<a name="Topology_After_SIEM_and_Log_Integration"><h1 align="center"><strong>Topology – After SIEM & Log Integration</strong></h1>
 
 <p align="center">
   <img src="Images/Topology_After_SIEM_and_Log_Integration.png" alt="Simple Topology" style="max-width: 100%;">
