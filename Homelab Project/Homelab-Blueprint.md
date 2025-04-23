@@ -2,7 +2,7 @@
 
 This document tracks the creation, evolution, and exercises performed in my self-hosted cybersecurity homelab. It includes setup steps, hands-on experiments, troubleshooting, and takeaways from each phase.
 
----
+<hr>
 
 ## Table of Contents
 
@@ -23,7 +23,7 @@ This document tracks the creation, evolution, and exercises performed in my self
 
 </details>
 
----
+<hr>
 
 <h1 align="center"><strong>Phase 1 - Core Components</strong></h1> <a name="phase1"></a>
 
@@ -38,14 +38,14 @@ This phase focuses on installing and configuring essential components: Kali Linu
 - Installed **Metasploitable2 (Target)**
 - Configured both VMs to run on **Host-Only networking** for isolation and safety
 
----
+<hr>
 <a name="Topology_Core_Setup"></a><h1 align="center"><strong>Topology – Core Setup</strong></h1>
 
 <p align="center">
   <img src="Images/Topology_Core_Setup_Phase_1.png" alt="Simple Topology" style="max-width: 100%;">
 </p>
 
----
+<hr>
 <a name="phase2"></a><h1 align="center"><strong>Phase 2 - Identifying the Target Machine (Network Discovery)</strong></h1> 
 
 ### Objective  
@@ -56,33 +56,33 @@ Using tools like `ifconfig` and `nmap`, this phase simulates an attacker scannin
 
 ### Steps:
 
-1. Verify both VMs are running and on the same network.
+#### 1. Verify both VMs are running and on the same network.
 
-2. Open a terminal on the **Kali Linux** VM and identify the local IP address and subnet:
+#### 2. Open a terminal on the **Kali Linux** VM and identify the local IP address and subnet:
    ```bash
    ifconfig
    ```
 
-3. Run a **ping sweep** on the subnet to discover live hosts:
+#### 3. Run a **ping sweep** on the subnet to discover live hosts:
    ```bash
    nmap -sn 192.168.56.0/24
    ```
 
-4. Once the **Metasploitable2** IP address is identified, run a basic **port scan**:
+#### 4. Once the **Metasploitable2** IP address is identified, run a basic **port scan**:
    ```bash
    nmap [target_ip]
    ```
 
-5. Enumerate running services and their versions:
+#### 5. Enumerate running services and their versions:
    ```bash
    nmap -sV [target_ip]
    ```
 
 
 
-<p align="center"><em>At this stage, the vulnerable system has been identified and its services have been enumerated. This completes the initial reconnaissance phase. Next, we’ll begin exploring exploitation techniques using Metasploit.</em></<p>
+<p align="center"><em>At this stage, the vulnerable system has been identified and its services have been enumerated. This completes the initial reconnaissance phase. Next, we’ll begin exploring exploitation techniques using Metasploit.</em></p>
 
----
+<hr>
 <a name="phase3"></a><h1 align="center"><strong>Phase 3 – Initial Exploitation with Metasploit</strong></h1> 
 
 ### Objective  
@@ -93,37 +93,37 @@ This phase simulates a real-world attack by exploiting the vulnerable vsFTPd ser
 
 ### Steps:
 
-1. Identify the vulnerable service from the previous scan:
+#### 1. Identify the vulnerable service from the previous scan:
    - Port 21 is open and running `vsFTPd 2.3.4`, which is known to have a backdoor vulnerability.
 
-2. Launch **Metasploit Framework** from **Kali**:
+#### 2. Launch **Metasploit Framework** from **Kali**:
    ```bash
    msfconsole
    ```
 
-3. Search for the exploit module related to **vsFTPd**:
+#### 3. Search for the exploit module related to **vsFTPd**:
    ```bash
    search vsftpd
    ```
 
-4. Load the correct exploit module:
+#### 4. Load the correct exploit module:
    ```bash
    use exploit/unix/ftp/vsftpd_234_backdoor
    ```
 
-5. Set the target IP address:
+#### 5. Set the target IP address:
    ```bash
    set RHOSTS [target_ip]
    ```
 
-6. Run the exploit:
+#### 6. Run the exploit:
    ```bash
    exploit
    ```
 
-<p align="center"><em>If successful, this will spawn a root shell on the target system. This is for educational purposes only and should never be performed outside of authorized lab environments.</em></<p>
+<p align="center"><em>If successful, this will spawn a root shell on the target system. This is for educational purposes only and should never be performed outside of authorized lab environments.</em></p>
 
----
+<hr>
 <a name="phase4"></a><h1 align="center"><strong>Phase 4 – pfSense Firewall Installation and Network Segmentation</strong></h1>
 
 ### Objective  
@@ -134,34 +134,34 @@ This phase adds a pfSense firewall between the external attacker machine (Kali L
 
 ### Steps:
 
-1. Download **pfSense CE ISO**  
+#### 1. Download **pfSense CE ISO**  
    - Link: [https://www.pfsense.org/download/](https://www.pfsense.org/download/)
 
-2. Create a new VM in VMware Workstation  
+#### 2. Create a new VM in VMware Workstation  
    - Mount the pfSense ISO  
    - Assign:
      - `Network Adapter 1 (WAN)` → `Custom: VMnet2`
      - `Network Adapter 2 (LAN)` → `Custom: VMnet3`
 
-<p align="center"><em>You will likely have to enter the VMware virtual network editor to create VMnet2 and VMnet3.</em></<p>
+<p align="center"><em>You will likely have to enter the VMware virtual network editor to create VMnet2 and VMnet3.</em></p>
 
-3. Install pfSense and assign interfaces
+#### 3. Install pfSense and assign interfaces
    - `em0` → WAN (VMnet2)  
    - `em1` → LAN (VMnet3)
 
-4. Set static IP addresses using pfSense CLI **(Option 2):**
+#### 4. Set static IP addresses using pfSense CLI **(Option 2):**
    ```text
    WAN (em0): 192.168.20.1/24  
    LAN (em1): 192.168.1.1/24
    ```
 
-5. Disable VMware DHCP on **VMnet2** and **VMnet3**
+#### 5. Disable VMware DHCP on **VMnet2** and **VMnet3**
    - Open the **Virtual Network Editor** in VMware Workstation
    - Select both `VMnet2` and `VMnet3`
    - Uncheck **“Use local DHCP service to distribute IP address”** for both
    - Click **Apply** to save changes
 
-6. Configure **Kali Linux** (Attacker VM)
+#### 6. Configure **Kali Linux** (Attacker VM)
    - Connect Kali’s network adapter to `VMnet2`
    - Assign a static IP:
      ```bash
@@ -173,7 +173,7 @@ This phase adds a pfSense firewall between the external attacker machine (Kali L
      ping 192.168.20.1
      ```
 
-7. Configure Metasploitable2 **(Target VM)**
+#### 7. Configure Metasploitable2 **(Target VM)**
    - Connect Metasploitable2’s network adapter to `VMnet3`
    - On boot, it should automatically get an IP from pfSense (e.g., `192.168.1.100`)
    - Might have to disable pfSense firewall
@@ -183,15 +183,15 @@ This phase adds a pfSense firewall between the external attacker machine (Kali L
      ping 192.168.1.1
      ```
 
-8. Re-enable pfSense filtering **(if previously disabled)**
+#### 8. Re-enable pfSense filtering **(if previously disabled)**
    - If you used `pfctl -d` to troubleshoot earlier, re-enable packet filtering:
      ```bash
      pfctl -e
      ```
 
----
+<hr>
 <a name="phase4.8"></a><h1 align="center"><strong>Phase 4.8 – Temporary SIEM Deployment on Kali (Retired)</strong></h1> 
-<p align="center"><em>This was the first iteration of deploying Splunk in the lab environment, hosted temporarily on Kali Linux. While functional for limited local testing, this setup does not reflect operational best practices. It has been fully replaced by the Windows-based deployment introduced in Phase 5.</em></<p>
+<p align="center"><em>This was the first iteration of deploying Splunk in the lab environment, hosted temporarily on Kali Linux. While functional for limited local testing, this setup does not reflect operational best practices. It has been fully replaced by the Windows-based deployment introduced in Phase 5.</em></p>
 
 <details>
 
@@ -205,48 +205,48 @@ Install and configure Splunk on Kali Linux to serve as a SIEM platform for futur
 ### Overview  
 Splunk will be used to ingest and analyze logs from the lab environment, enabling simulated alerting and incident response workflows. This phase sets the foundation for blue team operations.
 
-<p align="center"><em>This is a phase in the homelab that requires temporary internet access. Splunk is downloaded directly from the official site and installed on the Kali VM. After installation, return the VM to host-only mode to preserve network isolation.</em></<p>
+<p align="center"><em>This is a phase in the homelab that requires temporary internet access. Splunk is downloaded directly from the official site and installed on the Kali VM. After installation, return the VM to host-only mode to preserve network isolation.</em></p>
 
 ### Steps:
 
 
-1. Acquire the `wget` link for the Splunk installer (Linux .deb package):
+#### 1. Acquire the `wget` link for the Splunk installer (Linux .deb package):
    ```bash
    wget https://download.splunk.com/products/splunk/releases/9.4.1/linux/splunk-9.4.1-e3bdab203ac8-linux-amd64.deb
    ```
 
-2. Install the downloaded Splunk package:
+#### 2. Install the downloaded Splunk package:
    ```bash
    sudo dpkg -i splunk-9.4.1-e3bdab203ac8-linux-amd64.deb
    ```
 
-3. Start Splunk for the first time and accept the license:
+#### 3. Start Splunk for the first time and accept the license:
    ```bash
    sudo /opt/splunk/bin/splunk start --accept-license
    ```
 
-<p align="center"><em>Splunk version numbers and filenames may change over time, adjust the URL and commands accordingly.</<p></em>
+<p align="center"><em>Splunk version numbers and filenames may change over time, adjust the URL and commands accordingly.</p></em>
 
-4. When prompted, set the Splunk admin username and password.
+#### 4. When prompted, set the Splunk admin username and password.
 
-5. Access the Splunk Web Interface from a browser:
+#### 5. Access the Splunk Web Interface from a browser:
    ```bash
    http://kali:8000
    ```
 
-6. **(Optional)** To manually start Splunk after reboot:
+#### 6. **(Optional)** To manually start Splunk after reboot:
    ```bash
    sudo /opt/splunk/bin/splunk start
    ```
 
-7. **(Optional)** To automatically start Splunk on system boot:
+#### 7. **(Optional)** To automatically start Splunk on system boot:
    ```bash
    sudo /opt/splunk/bin/splunk enable boot-start
    ```
 
-<p align="center"><em>The firewall is officially up but its difficult to configure it as is, as a result of that we will be going in the direction of creating a SIEM in phase 5 to both configure the firewall and have a place to log data that occurs</em></<p>
+<p align="center"><em>The firewall is officially up but its difficult to configure it as is, as a result of that we will be going in the direction of creating a SIEM in phase 5 to both configure the firewall and have a place to log data that occurs</em></p>
 
----
+<hr>
 <a name="Topology_Splunk_Installation"></a><h1 align="center"><strong>Topology – After Splunk Installation  </strong></h1> 
 
 <p align="center">
@@ -255,7 +255,7 @@ Splunk will be used to ingest and analyze logs from the lab environment, enablin
 </details>  
 <hr>
 <a name="phase4.9"></a><h1 align="center"><strong>Phase 4.9 – Experimental .zsh_history Monitoring (Deprecated)</strong></h1>
-<p align="center"><em>A quick experiment in terminal command tracking via Splunk file monitoring. Useful for attacker behavior proof-of-concept, but not scalable or reliable as a primary detection method.</em></<p>
+<p align="center"><em>A quick experiment in terminal command tracking via Splunk file monitoring. Useful for attacker behavior proof-of-concept, but not scalable or reliable as a primary detection method.</em></p>
 
 <details>
 
@@ -267,46 +267,46 @@ By setting up Splunk to watch the *.zsh_history* file, we can track executed ter
 
 ### Steps:
 
-1. Log in to the Splunk Web Interface:
+#### 1. Log in to the Splunk Web Interface:
    ```bash
    http://kali:8000
    ```
 
-2. Click on **Add Data** from the main dashboard.
+#### 2. Click on **Add Data** from the main dashboard.
 
-3. Select **Monitor** as the data input method.
+#### 3. Select **Monitor** as the data input method.
 
-4. Choose **Files and Directories** as the data source.
+#### 4. Choose **Files and Directories** as the data source.
 
-5. Set the path to monitor:
+#### 5. Set the path to monitor:
    ```bash
    /home/kali/.zsh_history
    ```
 
-6. Set the Source Type to:
+#### 6. Set the Source Type to:
    ```bash
    zsh_current
    ```
 
-7. Leave the input settings as default, then click **Review** and **Submit**.
+#### 7. Leave the input settings as default, then click **Review** and **Submit**.
 
-8. Click **Start Searching** to go to the Splunk Search & Reporting dashboard.
+#### 8. Click **Start Searching** to go to the Splunk Search & Reporting dashboard.
 
-9. In the search bar, run a query similar to:
+#### 9. In the search bar, run a query similar to:
    ```bash
    source="/home/kali/.zsh_history" host="kali" sourcetype="zsh_current"
    ```
 
-10. Ensure your shell writes commands to history immediately by running:
+#### 10. Ensure your shell writes commands to history immediately by running:
     ```bash
     fc -W
     ```
 
-<p align="center"><em>If everything was set up correctly, you should now see your terminal command logs appearing in Splunk. If something isn’t working, navigate to the top right of the Splunk interface and click on Settings. Under Data Inputs, go to Files & Directories, scroll down to find the entry for `/home/kali/.zsh_history`, and delete it. Then, restart the process from Step 1 above to reconfigure the input.</em></<p>
+<p align="center"><em>If everything was set up correctly, you should now see your terminal command logs appearing in Splunk. If something isn’t working, navigate to the top right of the Splunk interface and click on Settings. Under Data Inputs, go to Files & Directories, scroll down to find the entry for `/home/kali/.zsh_history`, and delete it. Then, restart the process from Step 1 above to reconfigure the input.</em></p>
 </details>  
 <hr>
 
-<h1 align="center"><strong>Phase 5 – Enterprise SIEM Setup & Deployment (Splunk on Windows VM)</strong></h1> <a name="phase5"></a>
+<h1 align="center"><strong>Phase 5 – Windows 10 Splunk SIEM Setup & Deployment</strong></h1> <a name="phase5"></a>
 
 ### Objective
 Deploy a Splunk instance on a Windows 10 virtual machine to act as the lab’s centralized SIEM platform. This phase focuses on foundational setup: getting the Splunk environment online, ensuring it can be reached from other systems, and preparing it for future log ingestion and firewall integration.
@@ -317,25 +317,25 @@ With the firewall (pfSense) deployed in Phase 4, we now introduce a Windows 10 m
 
 ### Steps
 
-1. Set Up the Windows 10 Virtual Machine
+#### 1. Set Up the Windows 10 Virtual Machine
 - Follow the instructions in this video to download and install Windows 10 inside VMware Workstation:  
   [Windows 10 Installation Tutorial (YouTube)](https://www.youtube.com/watch?v=-4c3MO3Hm_c&ab_channel=OnlineTrainingforEveryone)
 - **(Optional)** Install VMware Tools for improved usability.
 - **(Optional)** Rename the PC to something recognizable, such as `splunk-win10`.
 
-2. Install **Splunk Enterprise**
+#### 2. Install **Splunk Enterprise**
 - On the Windows 10 VM, go to [https://www.splunk.com](https://www.splunk.com) and click **Download Now** for Splunk Enterprise.
 - Run the installer with default options.
 - Make sure to enable **Splunk startup on reboot** during installation.
 - After installation, confirm that Splunk launches successfully.
 
-3. Reconfigure the VM Network
+#### 3. Reconfigure the VM Network
 - Shut down the Windows VM.
 - In VMware Workstation, change the network adapter from **NAT** to **VMnet3**.
 - Boot the VM.
 - If asked whether you want the PC to be discoverable on the network, choose **Yes**.
 
-4. Enable Syslog Input in Splunk **(Port 514)**
+#### 4. Enable Syslog Input in Splunk **(Port 514)**
 - On the Windows VM, open a browser and go to:
 ```bash
 http://localhost:8000
@@ -352,7 +352,7 @@ http://localhost:8000
 syslog
 ```
 
-5. **(Optional)** Create a Custom Index
+#### 5. **(Optional)** Create a Custom Index
 - You can create a new index named:
 ```bash
 pfsense
@@ -363,11 +363,11 @@ pfsense
 index=pfsense sourcetype=syslog
 ```
 
-6. Finalize Logging Setup
+#### 6. Finalize Logging Setup
 - Click **Review** and then **Submit** to finish the logging input setup.
 - Splunk is now listening on UDP port 514 and ready to receive syslog data from pfSense in Phase 6.
 
----
+<hr>
 <h1 align="center"><strong>Phase 6 – Splunk & pfSense Log Integration and Tuning</strong></h1> <a name="phase6"></a>
 
 ### Objective
@@ -380,7 +380,7 @@ With Splunk deployed on the internal Windows VM and listening on UDP port 514, t
 
 Note: Before powering on any devices, start the pfSense VM first. This ensures it properly assigns IP addresses via DHCP and avoids potential network misalignment or reassignment issues.
 
-1. Access the pfSense Web UI from the Windows VM  
+#### 1. Access the pfSense Web UI from the Windows VM  
 - On your Windows Splunk VM, open a browser and navigate to:  
 ```bash
 http://192.168.1.1
@@ -399,7 +399,7 @@ During setup:
 
 *(screenshot placeholder: pfSense setup wizard with hostname and timezone)*
 
-2. Set the DHCP Address Pool  
+#### 2. Set the DHCP Address Pool  
 - In pfSense, go to:  
 ```bash
 Services > DHCP Server > LAN
@@ -413,7 +413,7 @@ Range: 192.168.1.100 - 192.168.1.200
 
 *(screenshot placeholder: DHCP Server range config)*
 
-3. Assign a Static Mapping to the Windows (Splunk) VM  
+#### 3. Assign a Static Mapping to the Windows (Splunk) VM  
 - Go to:  
 ```bash
 Status > DHCP Leases
@@ -424,14 +424,14 @@ Status > DHCP Leases
   - **(Optional)** update the **Hostname** and add a **Description** to reflect its SIEM role  
 - Save the mapping and reboot the Windows VM to verify it retains the assigned IP.
 
-4. Enable Remote Logging in pfSense  
+#### 4. Enable Remote Logging in pfSense  
 - From the dashboard, go to:  
 ```bash
 Status > System Logs
 ```
 - Click the Settings tab at the top of the page.
 
-5. Configure Remote Log Forwarding to Splunk  
+#### 5. Configure Remote Log Forwarding to Splunk  
 - Enable the checkbox for **Enable Remote Logging**.  
 - In the **Remote log servers** field, enter the static IP of the Windows Splunk VM (e.g., `192.168.1.30`).  
 - Under **Remote Syslog Contents**, check the following:  
@@ -444,7 +444,7 @@ Status > System Logs
 
 *(screenshot placeholder: Remote syslog configuration page)*
 
-6. Add a **Windows Firewall Rule** to **Allow Syslog Traffic**
+#### 6. Add a **Windows Firewall Rule** to **Allow Syslog Traffic**
 - On the Windows Splunk VM, open:  
 ```bash
 Control Panel > Windows Defender Firewall > Advanced Settings
@@ -459,7 +459,7 @@ Control Panel > Windows Defender Firewall > Advanced Settings
   **Allow Syslog to Splunk**
 - Click **Finish** to apply the rule.
 
-7. Validate Log Reception in Splunk  
+#### 7. Validate Log Reception in Splunk  
 - Send a ping or generate simple traffic to your pfSense router from another machine:
 ```bash
 ping 192.168.1.1
@@ -480,4 +480,4 @@ index=* sourcetype=syslog
 
 
 <a name="Next_Up"></a><h1 align="center"><strong>Next Up</strong></h1>
-- Phase 7 – 
+- Phase 7 – [Coming Soon]
