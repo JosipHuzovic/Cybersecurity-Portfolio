@@ -191,7 +191,7 @@ This phase adds a pfSense firewall between the external attacker machine (Kali L
      pfctl -e
      ```
 <hr>
-<a name="#Topology_pfSense_Only"><h1 align="center"><strong>Topology – With pfSense Firewall</strong></h1>
+<a name="Topology_pfSense_Only"></a><h1 align="center"><strong>Topology – With pfSense Firewall</strong></h1>
 
 <p align="center">
   <img src="Images/Topology_With_pfSense_Firewall_Only.png" alt="Simple Topology" style="max-width: 100%;">
@@ -256,12 +256,6 @@ Splunk will be used to ingest and analyze logs from the lab environment, enablin
 
 <p align="center"><em>The firewall is officially up but its difficult to configure it as is, as a result of that we will be going in the direction of creating a SIEM in phase 5 to both configure the firewall and have a place to log data that occurs</em></p>
 
-<hr>
-<a name="Topology_Splunk_Installation"></a><h1 align="center"><strong>Topology – After Splunk Installation  </strong></h1> 
-
-<p align="center">
-  <img src="Images/Topology_After_Splunk_Installation.png" alt="Simple Topology" style="max-width: 100%;">
-</p>
 </details>  
 <hr>
 <a name="phase4.9"></a><h1 align="center"><strong>Phase 4.9 – Experimental .zsh_history Monitoring (Deprecated)</strong></h1>
@@ -484,7 +478,7 @@ index=* sourcetype=syslog
 *(screenshot placeholder: Splunk search with syslog results)*
 
 <hr>
-<a name="Topology_After_SIEM_and_Log_Integration"><h1 align="center"><strong>Topology – After SIEM & Log Integration</strong></h1>
+<a name="Topology_After_SIEM_and_Log_Integration"></a><h1 align="center"><strong>Topology – After SIEM & Log Integration</strong></h1>
 
 <p align="center">
   <img src="Images/Topology_After_SIEM_and_Log_Integration.png" alt="Simple Topology" style="max-width: 100%;">
