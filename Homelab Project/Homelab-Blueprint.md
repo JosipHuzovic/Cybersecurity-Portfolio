@@ -13,6 +13,7 @@ This document tracks the creation, evolution, and exercises performed in my self
 - [Phase 4 - pfSense Firewall Installation and Network Segmentation](#phase4)
 - [Phase 5 – Enterprise SIEM Setup & Deployment (Splunk on Windows VM)](#phase5)
 - [Phase 6 - Splunk & pfSense Log Integration and Tuning](#phase6)
+  - [Topology – After SIEM & Log Integration](#Topology_After_SIEM_and_Log_Integration)
 - [Next Up](#Next_Up)
 
 <details>
@@ -54,7 +55,7 @@ Identify live hosts and services within the isolated lab environment to simulate
 ### Overview  
 Using tools like `ifconfig` and `nmap`, this phase simulates an attacker scanning a local network to discover targets and enumerate exposed ports and services, laying the groundwork for future exploitation.
 
-### Steps:
+### Steps
 
 #### 1. Verify both VMs are running and on the same network.
 
@@ -91,7 +92,7 @@ Leverage known vulnerabilities to gain unauthorized access to the target system 
 ### Overview  
 This phase simulates a real-world attack by exploiting the vulnerable vsFTPd service on Metasploitable2, providing experience with vulnerability identification, module selection, and command execution through a remote shell.
 
-### Steps:
+### Steps
 
 #### 1. Identify the vulnerable service from the previous scan:
    - Port 21 is open and running `vsFTPd 2.3.4`, which is known to have a backdoor vulnerability.
@@ -132,7 +133,7 @@ Introduce a realistic network perimeter using a virtualized firewall (pfSense) t
 ### Overview  
 This phase adds a pfSense firewall between the external attacker machine (Kali Linux) and the internal lab network (Metasploitable2, Splunk). This mimics a production firewall protecting internal infrastructure from external threat actors. Only specific ports are allowed through, and all traffic is filtered or logged.
 
-### Steps:
+### Steps
 
 #### 1. Download **pfSense CE ISO**  
    - Link: [https://www.pfsense.org/download/](https://www.pfsense.org/download/)
@@ -207,7 +208,7 @@ Splunk will be used to ingest and analyze logs from the lab environment, enablin
 
 <p align="center"><em>This is a phase in the homelab that requires temporary internet access. Splunk is downloaded directly from the official site and installed on the Kali VM. After installation, return the VM to host-only mode to preserve network isolation.</em></p>
 
-### Steps:
+### Steps
 
 
 #### 1. Acquire the `wget` link for the Splunk installer (Linux .deb package):
@@ -265,7 +266,7 @@ Configure Splunk to monitor *.zsh_history* in near real-time on Kali Linux to lo
 ### Overview  
 By setting up Splunk to watch the *.zsh_history* file, we can track executed terminal commands from the Kali Linux VM. This gives visibility into attacker behavior and supports future correlation and detection use cases. To make logs appear instantly in Splunk, we'll also configure the shell to write history after every command.
 
-### Steps:
+### Steps
 
 #### 1. Log in to the Splunk Web Interface:
    ```bash
@@ -473,7 +474,14 @@ index=* sourcetype=syslog
 
 *(screenshot placeholder: Splunk search with syslog results)*
 
+<hr>
+<a name="Topology_After_SIEM_and_Log_Integration"><h1 align="center"><strong>Lab Topology – After SIEM & Log Integration</strong></h1>
 
+<p align="center">
+  <img src="Images/Topology_After_SIEM_and_Log_Integration.png" alt="Simple Topology" style="max-width: 100%;">
+</p>
+
+<hr>
 
 
 
