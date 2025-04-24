@@ -194,7 +194,7 @@ This phase adds a pfSense firewall between the external attacker machine (Kali L
 <a name="Topology_pfSense_Only"></a><h1 align="center"><strong>Topology – With pfSense Firewall</strong></h1>
 
 <p align="center">
-  <img src="Images/Topology_With_pfSense_Firewall_Only.png" alt="Simple Topology" style="max-width: 100%;">
+  <img src="Images/Topology_With_pfSense_Firewall_Only.png" alt="Topology_With_pfSense_Firewall_Only" style="max-width: 100%;">
 </p>
 
 <hr>
@@ -401,7 +401,9 @@ During setup:
   - Set the **Timezone** to your local region to keep logs consistent across systems.  
   - On step 4 of 9, leave **WAN** settings as-is. The Kali machine is treated as the external network and doesn't require changes.
 
-*(screenshot placeholder: pfSense setup wizard with hostname and timezone)*
+<p align="center">
+  <img src="Images/pfSense_Setup_Wizard_HN_and_TZ.png" alt="pfSense_Setup_Wizard_HN_and_TZ" style="max-width: 100%;">
+</p>
 
 #### 2. Set the DHCP Address Pool  
 - In pfSense, go to:  
@@ -415,7 +417,9 @@ Range: 192.168.1.100 - 192.168.1.200
 - Your Splunk VM’s static IP (e.g., `192.168.1.30`) must be outside this range.  
 - Click **Save** and then **Apply Changes**.
 
-*(screenshot placeholder: DHCP Server range config)*
+<p align="center">
+  <img src="Images/DHCP_Server_Range.png" alt="Images/DHCP_Server_Range" style="max-width: 100%;">
+</p>
 
 #### 3. Assign a Static Mapping to the Windows (Splunk) VM  
 - Go to:  
@@ -446,7 +450,9 @@ Status > System Logs
   - **General Authentication Events**  
 - Click **Save** and then **Apply Changes**.
 
-*(screenshot placeholder: Remote syslog configuration page)*
+<p align="center">
+  <img src="Images/Remote_Syslog_Configuration.png" alt="Remote_Syslog_Configuration" style="max-width: 100%;">
+</p>
 
 #### 6. Add a **Windows Firewall Rule** to **Allow Syslog Traffic**
 - On the Windows Splunk VM, open:  
@@ -475,13 +481,25 @@ index=* sourcetype=syslog
 ```
 - You should see entries from your pfSense host. If nothing shows, check firewall rules, input settings, and verify port 514 is open.
 
-*(screenshot placeholder: Splunk search with syslog results)*
+<p align="center">
+  <img src="Images/Splunk_Search_with_Syslog_Results.png" alt="Images/Splunk_Search_with_Syslog_Results" style="max-width: 100%;">
+</p>
+
+<p align="center"><em>Once you’ve confirmed that logs are successfully reaching Splunk and the system is functioning as expected, it’s best practice to reduce unnecessary log volume. At this point, we're receiving alerts every time a VM like Kali Linux tries (and fails) to reach the internet — which isn't actionable and adds noise. We’ll now adjust the logging configuration to prioritize meaningful data for long-term visibility.</em></p>
+
+#### 8. Return to Remote Logging in pfSense
+- Return to the tab for **Enable Remote Logging**.  
+- Under **Remote Syslog Contents**, uncheck the following:  
+  - **System Events**   
+  - **DNS Events**  
+  - **DHCP Events**  
+- Click **Save** and then **Apply Changes**.
 
 <hr>
 <a name="Topology_After_SIEM_and_Log_Integration"></a><h1 align="center"><strong>Topology – After SIEM & Log Integration</strong></h1>
 
 <p align="center">
-  <img src="Images/Topology_After_SIEM_and_Log_Integration.png" alt="Simple Topology" style="max-width: 100%;">
+  <img src="Images/Topology_After_SIEM_and_Log_Integration.png" alt="Topology_After_SIEM_and_Log_Integration" style="max-width: 100%;">
 </p>
 
 <hr>
