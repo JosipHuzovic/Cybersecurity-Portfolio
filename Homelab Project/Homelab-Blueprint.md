@@ -15,6 +15,8 @@ This document tracks the creation, evolution, and exercises performed in my self
 - [Phase 5 – Enterprise SIEM Setup & Deployment (Splunk on Windows VM)](#phase5)
 - [Phase 6 - Splunk & pfSense Log Integration and Tuning](#phase6)
   - [Topology – After SIEM & Log Integration](#Topology_After_SIEM_and_Log_Integration)
+- [Phase 7 – Splunk & pfSense Log Integration and Tuning](#phase7)
+- [Phase 8 – Detection & Firewall Validation](#phase8)
 - [Next Up](#Next_Up)
 
 <details>
@@ -503,10 +505,76 @@ index=* sourcetype=syslog
 </p>
 
 <hr>
+<a name="phase7"></a><h1 align="center"><strong>Phase 7 – Splunk & pfSense Log Integration and Tuning</strong></h1>
+
+### Objective
+Move beyond basic syslog ingestion by enhancing Splunk’s visibility into network events. Implement structured log parsing, improve field normalization, and introduce threat detection capabilities through IDS/IPS integration.
+
+
+### Overview
+While pfSense firewall logs were successfully ingested into Splunk in Phase 6, initial analysis showed that the logs provided only raw packet flow data without higher-level context (e.g., scan detection, exploitation attempts).
+To create a more operational SIEM setup, this phase focuses on:
+- Deploying the Technology Add-on for pfSense (TA-pfSense) to structure firewall logs into usable fields.
+- Customizing data inputs with defined source types, host naming, and dedicated indexing for pfSense traffic.
+- Identifying the need for IDS/IPS data to detect active threat behavior (beyond basic firewall allow/block actions).
+-Planning for the deployment of Suricata IDS on pfSense to forward alert logs into Splunk.
+
+### Steps
+
+#### 1. Download the TA-pfSense Add-on for Splunk
+- Navigate to the official Splunkbase listing for [TA-pfSense](https://splunkbase.splunk.com/app/1527).
+- Download the application package.
+
+#### 2. Install the TA-pfSense Add-on
+- In Splunk, go to **Manage Apps**.
+- Click **Install app from file**, and upload the TA-pfSense package.
+- Restart Splunk if prompted to apply changes.
+
+#### 3. Remove the Previous UDP Data Input
+- Delete the earlier basic UDP/514 data input.
+- This ensures that incoming pfSense logs can now be properly categorized and parsed by the new App Context.
+
+#### 4. Create a Dedicated pfSense Data Input
+- Navigate to **Settings → Data Inputs → UDP → Add New**.
+- Configure the new input:
+  - **Port:** 514
+  - **Source Type:** `pfsense`
+  - **App Context:** `Technology Add-on for pfSense (TA-pfSense)`
+  - **Host:** *(Optional)* Set a custom hostname or leave default IP.
+  - **Index:** `pfsense`
+
+#### 5. Confirm Successful Log Ingestion
+- In the **Search & Reporting** app, run the following search:
+  ~~~spl
+  index=pfsense sourcetype=pfsense:filterlog
+  ~~~
+- Verify that events are being indexed with the correct source type and index.
+
+#### 6. Validate Field Extractions
+- Expand any incoming event.
+- Confirm that fields such as `src_ip`, `dest_ip`, `action`, `transport`, and `direction` are properly extracted.
+
+<p align="center"><em>Proper pfSense Parsing Example</em></p>
+<p align="center">
+  <img src="Images/Proper_pfSense_Parsing.png" alt="Proper pfSense Parsing" style="max-width: 100%;">
+</p>
+
+#### 7. Suricata Install Here (Coming Soon)
+
+
+<h1 align="center"><strong>Phase 8 – Detection & Firewall Validation</strong></h1> <a name="phase8"></a>
+
+### Objective
+Simulate attacks against segmented services to test firewall rules and log correlation in Splunk.
+
+### Overview
+
+
+### Steps
 
 
 
 
 
 <a name="Next_Up"></a><h1 align="center"><strong>Next Up</strong></h1>
-- Phase 7 – [Coming Soon]
+- Coming Soon
