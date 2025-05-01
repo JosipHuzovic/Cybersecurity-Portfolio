@@ -531,8 +531,13 @@ To create a more operational SIEM setup, this phase focuses on:
 - Restart Splunk if prompted to apply changes.
 
 #### 3. Remove the Previous UDP Data Input
-- Delete the earlier basic UDP/514 data input.
-- This ensures that incoming pfSense logs can now be properly categorized and parsed by the new App Context.
+- In Splunk, navigate to:
+   ```bash
+   Settings > Data Inputs > UDP
+   ```
+- Locate the existing UDP 514 input that was originally created.
+- Click **Delete** next to the old input.
+- Confirm deletion when prompted.
 
 #### 4. Create a Dedicated pfSense Data Input
 - Navigate to **Settings → Data Inputs → UDP → Add New**.
@@ -545,9 +550,9 @@ To create a more operational SIEM setup, this phase focuses on:
 
 #### 5. Confirm Successful Log Ingestion
 - In the **Search & Reporting** app, run the following search:
-  ~~~spl
-  index=pfsense sourcetype=pfsense:filterlog
-  ~~~
+  ```spl
+  index=pfsense
+  ```
 - Verify that events are being indexed with the correct source type and index.
 
 #### 6. Validate Field Extractions
