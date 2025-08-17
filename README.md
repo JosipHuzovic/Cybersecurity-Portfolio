@@ -24,7 +24,7 @@ Simulated real-world ransomware behavior using a Bash Bunny Mark II USB emulatio
 
 Full Report: [Capstone Technical Write-Up (PDF)](./Malware%20USB%20Simulation/Cybersecurity_Capstone_Bash_Bunny_Project.pdf)
 
-### [Malware Packet Simulation: Simulated Malware Beaconing](./Malware%20Packet%20simulation)
+### [Malware Packet Simulation: Simulated Malware Beaconing](./Malware%20Packet%20Simulation)
 
 **Current Work In Progress**
 
