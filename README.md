@@ -24,6 +24,17 @@ Simulated real-world ransomware behavior using a Bash Bunny Mark II USB emulatio
 
 Full Report: [Capstone Technical Write-Up (PDF)](./Malware%20USB%20Simulation/Cybersecurity_Capstone_Bash_Bunny_Project.pdf)
 
+### [Malware Packet Simulation: Simulated Malware Beaconing](./Malware%20Packet%20simulation)
+
+**Current Work In Progress**
+
+Created a safe malware simulation that generates repeated UDP packets to mimic command-and-control (C2) beaconing traffic. Used Wireshark to capture and analyze the traffic patterns, demonstrating how beaconing can be identified through timing, payload consistency, and unusual port usage.  
+- Developed a Python script to send controlled “beacon” packets at regular intervals  
+- Captured and analyzed traffic using Wireshark filters for UDP and custom ports  
+- Documented detection workflows to highlight red-flag patterns in network monitoring  
+- Built solely for educational and demonstrative purposes in a controlled lab environment  
+
+
 ---
 ## Tools & Technologies
 - **Languages:** Python, PowerShell, Bash, SQL, JavaScript, Ducky Script
@@ -34,7 +45,7 @@ Full Report: [Capstone Technical Write-Up (PDF)](./Malware%20USB%20Simulation/Cy
 ## Credentials
 - CompTIA Security+ (Issued Oct 2024)
 - Google Cybersecurity Foundations (Issued Feb 2025)
-- Bachelor of Science in Cybersecurity, Marist University (Expected May 2025)
+- Bachelor of Science in Cybersecurity, Marist University (Issued May 2025)
 
 ---
 ## License
