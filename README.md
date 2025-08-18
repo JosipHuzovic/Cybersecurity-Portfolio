@@ -7,14 +7,14 @@ Everything here was built for educational and demonstrative purposes, and tested
 ---
 ## Projects
 
-### [Homelab: Network Defense & SIEM Tuning](./Homelab%20Project)
+### > [Homelab: Network Defense & SIEM Tuning](./Homelab%20Project)
 This lab simulates internal reconnaissance, attack execution, and blue team response using Splunk, pfSense, and a segmented network of VMs.
 - Simulated attack paths using Nmap, Metasploit, and reverse shells
 - Configured pfSense to segment network traffic and control inbound exploitation attempts
 - Ingested `.zsh_history` and synthetic logs into Splunk for near-real-time detection
 - Documented incident response flow based on triggered alerts and manual correlation
 
-### [Malware Simulation: USB-Based Cross-Platform Ransomware](./Malware%20USB%20Simulation)
+### > [Malware Simulation: USB-Based Cross-Platform Ransomware](./Malware%20USB%20Simulation)
 Simulated real-world ransomware behavior using a Bash Bunny Mark II USB emulation device, with OS-aware logic and ethical recovery workflows. Includes a full-featured Linux payload developed using Ducky Script, GPG-based encryption, and systemd-based persistence.
 - Payload detects OS (Windows or Linux) and adjusts attack strategy accordingly
 - Designed for AV evasion and privilege-aware execution using PowerShell and terminal-based delivery
@@ -24,7 +24,7 @@ Simulated real-world ransomware behavior using a Bash Bunny Mark II USB emulatio
 
 Full Report: [Capstone Technical Write-Up (PDF)](./Malware%20USB%20Simulation/Cybersecurity_Capstone_Bash_Bunny_Project.pdf)
 
-### [Malware Packet Simulation: Simulated Malware Beaconing](./Malware%20Packet%20Simulation)
+### > [Malware Packet Simulation: Simulated Malware Beaconing](./Malware%20Packet%20Simulation)
 Built a small-scale simulation of malware beaconing behavior by generating repeated UDP packets and analyzing them in Wireshark. The project demonstrates how simple beaconing traffic can be spotted through timing, payload consistency, and unusual port usage.  
 - Wrote a Python script to send UDP “beacon” packets at fixed intervals  
 - Captured and reviewed the traffic in Wireshark using filters for custom ports  
