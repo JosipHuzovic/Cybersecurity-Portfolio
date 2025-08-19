@@ -24,12 +24,13 @@ Simulated real-world ransomware behavior using a Bash Bunny Mark II USB emulatio
 
 Full Report: [Capstone Technical Write-Up (PDF)](./Malware%20USB%20Simulation/Cybersecurity_Capstone_Bash_Bunny_Project.pdf)
 
-### > [Malware Beacon Simulation: Simulated C2 Traffic](./Malware%20Beacon%20Simulation)
-Built a small-scale simulation of malware beaconing behavior by generating repeated UDP packets and analyzing them in Wireshark. The project demonstrates how simple beaconing traffic can be spotted through timing, payload consistency, and unusual port usage.  
-- Wrote a Python script to send UDP “beacon” packets at fixed intervals  
-- Captured and reviewed the traffic in Wireshark using filters for custom ports  
-- Noted key detection points such as consistent intervals and non-standard port activity  
-- Designed as a safe, educational project in a controlled lab environment  
+### > [Beaconing Simulation: Safe C2-Style Traffic](./Malware%20Beacon%20Simulation)  
+Developed a small-scale simulation of **malware-like beaconing traffic** to practice detection techniques in Wireshark. This project demonstrates how beaconing patterns can be identified through timing, payload consistency, and unusual port usage.  
+- Wrote a Python script to generate UDP “beacon” packets at fixed intervals  
+- Captured and analyzed the traffic in Wireshark using custom port filters  
+- Identified detection points such as repeated intervals, consistent payloads, and non-standard port activity  
+- Built as a **safe, educational lab project** for defensive training and portfolio demonstration  
+
 
 
 ---
