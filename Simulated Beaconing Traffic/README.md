@@ -6,7 +6,7 @@
 
 This project simulates an extremely simple **malware-like beaconing behavior in a safe, controlled way** by sending repeated network packets to a designated IP and port using the Python script in [simulated_beacon.py](./simulated_beacon.py). The goal is to demonstrate how traffic patterns can be identified in a packet sniffer like Wireshark, without deploying any harmful code.  
 
-The script generates UDP traffic at regular intervals, mimicking the way real malware communicates with a command-and-control (C2) server — but in a way that is **entirely safe and non-malicious**. When captured, the traffic reveals recognizable patterns such as consistent timing, repeated payloads, and unusual port usage — all common red flags in network monitoring and threat hunting.  
+The script generates UDP traffic at regular intervals, mimicking the way real malware communicates with a command-and-control (C2) server, but in a way that is **entirely safe and non-malicious**. When captured, the traffic reveals recognizable patterns such as consistent timing, repeated payloads, and unusual port usage.  
 
 
 
