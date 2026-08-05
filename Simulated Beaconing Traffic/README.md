@@ -1,7 +1,4 @@
 <h1 align="center"><strong>Simulated Beacon Traffic</strong></h1>
-
-**This project was created while studying for CompTIA Network+ to put concepts of traffic analysis and Wireshark filtering into practice.**
-
 ---
 
 This project simulates an extremely simple **malware-like beaconing behavior in a safe, controlled way** by sending repeated network packets to a designated IP and port using the Python script in [simulated_beacon.py](./simulated_beacon.py). The goal is to demonstrate how traffic patterns can be identified in a packet sniffer like Wireshark, without deploying any harmful code.  

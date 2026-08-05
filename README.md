@@ -1,6 +1,6 @@
 # Josip Huzovic – Cybersecurity & IT Portfolio
 
-I'm Josip, a cybersecurity graduate focused on building and testing real-world attack and defense scenarios. Projects range from USB-based ransomware simulations to SIEM tuning and log correlation inside enterprise-style virtual labs.
+I'm Josip, a cybersecurity graduate focused on building and testing real-world attack, defense, and analysis scenarios. Projects range from USB-based ransomware simulations to SIEM tuning and detection engineering across virtual labs and dedicated server hardware.
 
 Everything here was built for educational and demonstrative purposes, and tested safely in isolated virtual labs.
 
@@ -12,7 +12,7 @@ Everything here was built for educational and demonstrative purposes, and tested
 **Actively maintained.** 
 
 A rebuilt homelab running on dedicated hardware, replacing my original nested-VM setup with proper storage redundancy, network segmentation, and persistent lab infrastructure.
-- Proxmox VE hypervisor on a UGREEN DXP4800 Plus with NVMe VM storage and a ZFS mirror for backups
+- Proxmox VE hypervisor on a UGREEN DXP4800 Pro with NVMe VM storage and a ZFS mirror for backups
 - pfSense edge firewall with segmented VLANs isolating lab, management, and services traffic
 - Splunk ingesting firewall, system, and authentication logs for detection tuning
 - UPS-backed for graceful shutdown and lab state preservation
@@ -49,14 +49,25 @@ Developed a small-scale simulation of **malware-like beaconing traffic** to prac
 ---
 ## Tools & Technologies
 - **Languages:** Python, PowerShell, Bash, SQL, JavaScript, Ducky Script
-- **Tools:** Splunk, Wireshark, Nessus, pfSense, Cisco Packet Tracer
-- **Platforms:** VMware Workstation, VirtualBox, Bash Bunny Mark II
+- **Security Tools:** Splunk, Wireshark, Nessus, pfSense, Metasploit, Nmap
+- **Infrastructure:** Proxmox VE, ZFS, VLAN segmentation, VMware Workstation, VirtualBox
+- **Operating Systems:** Linux (Arch, Debian, Kali), Windows
+- **Hardware:** Bash Bunny Mark II, Cisco Packet Tracer
 
 ---
-## Credentials
-- CompTIA CySA+ (Issued June 2026)
-- CompTIA Security+ (Issued Oct 2024)
-- Bachelor of Science in Cybersecurity, Marist University (Issued May 2025)
+## Certifications
+- **CompTIA Security Analytics Professional (CSAP)** – Jun 2026
+- **CompTIA CySA+** – Jun 2026
+- **CompTIA Security+** – Oct 2024
+- **Google Cybersecurity Certificate** – Feb 2025
+
+[Verify credentials on Credly](https://www.credly.com/users/josip-huzovic/badges/credly)
+
+---
+## Education
+**Bachelor of Science in Cybersecurity** – Marist University, May 2025  
+Minors in Information Technology, Information Systems, and Computer Science  
+Dean's List: Fall 2023, Spring 2025
 
 ---
 ## License

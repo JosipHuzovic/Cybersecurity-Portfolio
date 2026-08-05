@@ -29,7 +29,9 @@ Every one of those is addressed by dedicated hardware in the current build.
 
 ---
 ## Setup
-- **Chassis:** UGREEN DXP4800 Plus (4-bay, repurposed as hypervisor host)
+- **Chassis:** UGREEN DXP4800 Pro (4-bay, repurposed as hypervisor host)
+- **CPU:** Intel Core i3-1315U (6 cores / 8 threads)
+- **Memory:** 24GB DDR5 (stock 8GB + Crucial 16GB, running at 5200 MT/s)
 - **Boot & VM Storage:** Samsung 9100 PRO 1TB NVMe
 - **Bulk Storage:** WD Red Plus + Toshiba 4TB HDD (ZFS mirror)
 - **Power Protection:** APC BR1500MS2 UPS
@@ -72,8 +74,8 @@ Some of these phases are already in production but are still being implemented i
 |-------|----------------------------------------------------------------|---------------|
 | 1     | Hardware Provisioning: NAS, NVMe, HDDs, UPS                   | ✅ Complete    |
 | 2     | Hypervisor Deployment: Proxmox VE install and boot config     | ✅ Complete    |
-| 3     | Storage Layout: ZFS mirror creation and pool configuration    | 🔄 Complete    |
-| 4     | Power Protection: UPS integration and graceful shutdown test  | ✅ Complete    |
+| 3     | Power Protection: UPS integration and graceful shutdown test  | ✅ Complete    |
+| 4     | Storage Layout: ZFS mirror creation and pool configuration    | 🔄 In Progress |
 | 5     | Network Segmentation: pfSense deployment and VLAN buildout    | 🔄 In Progress |
 | 6     | SIEM Deployment: Splunk install and log source onboarding     | 🔄 In Progress |
 | 7     | Detection Engineering: Build and tune alert use-case library  | ⬜ Planned     |
