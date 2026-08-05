@@ -1,4 +1,6 @@
-<h1 align="center"><strong>Personal Homelab Project</strong></h1>
+<h1 align="center"><strong>Outdated Personal Homelab Project</strong></h1>
+
+**This was my first ever homelab implementation, I have since outgrown it. I now have an updated homelab that will start to be updated frequently. I will keep this here to showcase my previous efforts and may return to this at a later date, feel free to look around!**
 
 This self-hosted lab simulates enterprise systems using virtual machines, firewall segmentation, and network monitoring tools to build hands-on experience in IT support, diagnostics, and incident response workflows.
 

@@ -1,4 +1,6 @@
-# Homelab Blueprint & Learning Journal
+# Legacy Homelab Blueprint & Learning Journal
+
+**This was my first ever homelab implementation, I have since outgrown it. I now have an updated homelab that will start to be updated frequently. I will keep this here to showcase my previous efforts and may return to this at a later date, feel free to look around!**
 
 This document tracks the creation, evolution, and exercises performed in my self-hosted cybersecurity homelab. It includes setup steps, hands-on experiments, troubleshooting, and takeaways from each phase.
 
