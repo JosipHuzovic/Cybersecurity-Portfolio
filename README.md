@@ -7,7 +7,20 @@ Everything here was built for educational and demonstrative purposes, and tested
 ---
 ## Projects
 
-### > [Homelab: Network Defense & SIEM Tuning](./Homelab%20Project)
+### > [Homelab Server: Virtualized Security Lab on Proxmox](./Homelab%20Server)
+
+**Actively maintained.** 
+
+A rebuilt homelab running on dedicated hardware, replacing my original nested-VM setup with proper storage redundancy, network segmentation, and persistent lab infrastructure.
+- Proxmox VE hypervisor on a UGREEN DXP4800 Plus with NVMe VM storage and a ZFS mirror for backups
+- pfSense edge firewall with segmented VLANs isolating lab, management, and services traffic
+- Splunk ingesting firewall, system, and authentication logs for detection tuning
+- UPS-backed for graceful shutdown and lab state preservation
+
+### > [Legacy Homelab: Network Defense & SIEM Tuning](./Legacy%20Homelab%20Project)
+
+**Superseded by my current homelab, kept here to show earlier work.**
+
 This lab simulates internal reconnaissance, attack execution, and blue team response using Splunk, pfSense, and a segmented network of VMs.
 - Simulated attack paths using Nmap, Metasploit, and reverse shells
 - Configured pfSense to segment network traffic and control inbound exploitation attempts
@@ -41,8 +54,8 @@ Developed a small-scale simulation of **malware-like beaconing traffic** to prac
 
 ---
 ## Credentials
+- CompTIA CySA+ (Issued June 2026)
 - CompTIA Security+ (Issued Oct 2024)
-- Google Cybersecurity Foundations (Issued Feb 2025)
 - Bachelor of Science in Cybersecurity, Marist University (Issued May 2025)
 
 ---
